@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>document</title>
+	<style>
+	
+	</style>
+	
+</head>
+<body>
+	
+	<div id="app">
+		<template>
+			<input type="text" v-model="username"/>
+			<input type="text" v-model="password"/>
+			<input type="button" value="添加" @click="add"/>
+			<br/>
+			<label for="mychange">修改：</label>
+			<input id='mychange' type="text" v-model="mychange"/>
+			<br/>
+			<label for="myquery">查找：</label>
+			<input id='myquery' type="text" v-model="myquery"/>
+			<ul>
+				<li v-for="(item,index) of myquerycpt" :key="item.name">
+					<a href="index">{{item.name}}/{{item.age}}</a>
+					<a href="javascript:void(0)" @click="del(index)">删除</a>
+					<a href="javascript:void(0)" @click="checked(index)">修改</a>
+				</li>
+			</ul>
+		</template>
+	</div>
+	
+	<script src="./vue.js"></script>
+	<script>
+	
+	var vm=new Vue({
+		el:"#app",
+		data:{
+			username:'',
+			password:'',
+			mychange:'',
+			myquery:'',
+			list:[
+				{name:'haha',age:'xixi'},
+				{name:'xixi',age:'hehe'},
+				{name:'heihei',age:'hahaxi'},
+				{name:'xihehexi',age:'hehlalae'},
+				{name:'hwuwuaha',age:'xniniixi'},
+				{name:'xixoaoai',age:'hehpdpde'},
+				{name:'hehe',age:'haha'}
+			]
+		},
+		methods:{
+			add(){
+				if(this.username!=""&&this.password!=""){
+					this.list.push({name:this.username,age:this.password})
+				}
+				this.username='';
+				this.password=''
+			},
+			del(index){
+				this.list.splice(index,1)
+			},
+			checked(index){
+				if(this.mychange!=""){
+					this.list[index].name=this.mychange
+				}
+				this.mychange=""
+			}
+		},
+		computed:{
+			myquerycpt(){
+				var result=[];
+				this.list.forEach((item,index)=>{
+					if(item.name.indexOf(this.myquery)!=-1 || item.age.indexOf(this.myquery)!=-1){
+						result.push(item)
+					}
+				})
+				return result;
+			}
+		},
+	})
+	
+		
+	</script>
+</body>
+</html>
