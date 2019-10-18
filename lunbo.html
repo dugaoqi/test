@@ -1,0 +1,214 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .wrap{
+        width: 500px;  height: 280px;  border: 10px blue solid;
+        margin: 50px auto;  position: relative; overflow: hidden;
+    }
+    .box{height: 280px;   width: 3500px;  position: absolute;  left: -500px;    }
+    .item{width: 500px;   height: 280px;   float: left; }
+    .item{
+        width: 500px;   height: 280px;  float: left;
+        font-size: 100px;   color: white;   text-align: center;
+        line-height: 280px;
+    }
+    .item1{
+        background-color: red;
+    }
+    .item2{ background-color: yellow; } .item3{ background-color: blue; } .item4{   background-color: green; }.item5{   background-color: lightpink; }
+    .pre, .next{    position: absolute; top: 110px; width: 30px;
+        height: 50px;   background-color: black;    color: white;
+        text-align: center;  line-height: 50px;
+    }
+    .next{  left: 470px;    }
+   
+   
+    </style>
+</head>
+<body>
+        <div class="wrap">
+            <div class="box">
+                <div class="item item5">5</div>
+                <div class="item item1">1</div>
+                <div class="item item2">2</div>
+                <div class="item item3">3</div>
+                <div class="item item4">4</div>
+                <div class="item item5">5</div>
+                <div class="item item1">1</div>
+            </div>
+            <div class="pre" onclick="pre()">《</div>
+            <div class="next" onclick="next()">》</div>
+        </div>
+
+
+<script>
+
+// 下标要从1开始,以为播放的第一张图前面有一张最后那张图，下标要注意对应
+var box = document.getElementsByClassName("box")[0];
+    var index = 1;
+    var moveTimer;
+// 点击下一张
+    function next(){
+        index++;
+        if(index == 7){
+            index = 2;
+            box.style.left = "-500px";
+        }
+        moveWidthIndex();
+    }
+// 点击上一张
+    function pre(){
+        index--;
+        if(index == -1){
+            index = 4;
+            box.style.left = "-2500px";
+        }
+        moveWidthIndex();
+    }
+// 具体移动的函数
+    function moveWidthIndex(){
+        var l = index * -500 - box.offsetLeft;
+        var count = 0;
+        clearInterval(moveTimer);
+        moveTimer = setInterval(function(){
+            count++;
+            box.style.left = box.offsetLeft + l/10 + "px";
+            if(count >= 10){
+                clearInterval(moveTimer);
+                box.style.left = index * -500 + "px";
+            }       
+        },20);
+    }
+    
+
+</script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>HTML5--图片轮播</title>
+<!--
+@author:SM
+    @email:sm0210@qq.com
+    @desc:图片轮播多张展示
+-->
+<style type="text/css">
+html,body{
+  padding:0px;
+  margin:10px auto;
+}
+
+
+#warpper{
+ width:1120px;/*一列展示几个的宽度 ,4*280 动态算*/
+ height:150px;
+ margin:0 auto;
+ position:relative;
+ overflow:hidden;
+ border:1px solid red;
+}
+#inner{
+ /*元素个数*280(div宽度)  动态算 1120px[4个元素] 1440px[5个元素]  1680px[6个元素]  2240px[8个元素]
+ 用JS动态设置改值
+ */
+ width:2240px;
+ 
+ 
+ position:absolute;
+}
+
+#inner div{
+ width:270px;
+ height:150px;
+ background:#555;
+ float:left;
+ margin:0 5px;
+}
+
+#optrbtn{
+  text-align:center;
+  font-size:20px;
+}
+#optrbtn span {
+ display:inline-table;
+ border:1px solid red;
+ width:50px;
+ cursor:pointer;
+ margin-right:5px;
+}
+</style>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script language="javascript">
+
+$(function(){
+   
+    var curNum=0;
+    var count=$("#inner").children('div').length;
+   
+ 
+    //左滑动
+    $(".btnleft").click(function(){
+        //如果到了最后一个元素 停止
+        if((count-curNum)<=4){
+            return false;
+        }
+        curNum+=1;
+        $("#inner").animate({
+            left:'-=280'
+        },500,function(){
+            //curNum+=1;  //写在这里 如果快速点击 这句没有执行 应经开始执行第二次了
+        });
+    });
+    //右滑动
+    $(".btnright").click(function(){
+        //如果到了第一个元素 停止
+        if(curNum<=0){
+            return false;
+        }
+        curNum-=1;
+        $("#inner").animate({
+            left:'+=280'
+        },500,function(){
+            //curNum-=1;    //写在这里同样问题
+        });
+    });
+});
+
+</script>
+</head>
+
+<body>
+
+
+<div id="main">
+    <div id="warpper">
+        <div id="inner">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+            <div>8</div>
+        </div>
+    </div>
+</div>
+
+<br />
+<br />
+
+<div id="optrbtn">
+ <span class="btnleft">«</span>
+    <span class="btnright">»</span>
+</div>
+
+</body>
+</html>
