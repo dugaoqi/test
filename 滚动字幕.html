@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+<style>
+.my p {
+    display: none
+}
+.fixed .on {
+    display: block;
+    background: #ccc;
+    color: green;
+    width: 200px;
+    height: 50px;
+    height: 50px;
+}
+.fixed {
+    position: fixed;
+    z-index: 99999;
+    bottom: 200px;
+    width: 100%;
+    height: 50px;
+}
+</style>
+</head>
+
+<body>
+<div class="fixed"></div>
+<div class="my">
+    <p>我会不停地走1</p>
+    <p>我会不停地走2</p>
+    <p>我会不停地走3</p>
+    <p>我会不停地走4</p>
+</div>
+
+<script>
+$(window).load(function() {
+    jump();
+    setInterval(jump, 15000);
+});
+
+var index = -1;
+function jump() {
+    var marquee = $('<marquee scrollamount=15 loop="1" width="100%" height="48px;"></marquee>');
+    var len = $('.my p').length;
+    if (index != len - 1) {
+        // alert(index);
+        $('marquee').remove();
+        $('.my p').eq(index + 1).clone().addClass("on").appendTo(
+        marquee);
+        marquee.appendTo('.fixed');
+        index++;
+    } else {
+        //alert(3333333);
+        $('marquee').remove();
+        //初始化计数器
+        index = -1;
+        //最后一次setInterval循环的下一次，相当于初始化
+        jump();
+    }
+}
+</script>
+</body>
+</html>
