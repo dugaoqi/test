@@ -5,65 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #app{
+            width:80%;
+            height:40px;
+            border-radius:20px;
+            border:1px #e8e8e8 solid;
+            margin:100px auto;
+            position:relative;
+            overflow:hidden;
+        }
+        .app{
+            width:100%;
+            height:100%;
+            line-height:40px;
+            position:absolute;
+            top:0;
+            left:100%;
+        }
+        
 
-<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<style>
-.my p {
-    display: none
-}
-.fixed .on {
-    display: block;
-    background: #ccc;
-    color: green;
-    width: 200px;
-    height: 50px;
-    height: 50px;
-}
-.fixed {
-    position: fixed;
-    z-index: 99999;
-    bottom: 200px;
-    width: 100%;
-    height: 50px;
-}
-</style>
+        .notice{
+            width:80%;
+            height:60px;
+            border-radius:30px;
+            border:1px #000 solid;
+            margin:0 auto;
+            overflow:hidden;
+        }
+        .notice .tiploop span{
+            color:aqua;
+            line-height:60px;
+            margin-right:50px;
+        }
+    </style>
 </head>
-
 <body>
-<div class="fixed"></div>
-<div class="my">
-    <p>我会不停地走1</p>
-    <p>我会不停地走2</p>
-    <p>我会不停地走3</p>
-    <p>我会不停地走4</p>
-</div>
+        <!-- <div id="app">
+            <div class="app">
+                <span>1111111111</span>
+            </div>
+        </div> -->
 
-<script>
-$(window).load(function() {
-    jump();
-    setInterval(jump, 15000);
-});
 
-var index = -1;
-function jump() {
-    var marquee = $('<marquee scrollamount=15 loop="1" width="100%" height="48px;"></marquee>');
-    var len = $('.my p').length;
-    if (index != len - 1) {
-        // alert(index);
-        $('marquee').remove();
-        $('.my p').eq(index + 1).clone().addClass("on").appendTo(
-        marquee);
-        marquee.appendTo('.fixed');
-        index++;
-    } else {
-        //alert(3333333);
-        $('marquee').remove();
-        //初始化计数器
-        index = -1;
-        //最后一次setInterval循环的下一次，相当于初始化
-        jump();
-    }
-}
-</script>
+        <div class="notice">
+            <marquee 
+                class="tiploop"
+                behavior="scroll" 
+                contenteditable="true" 
+                onstart="this.firstChild.innerHTML+=this.firstChild.innerHTML;" 
+                scrollamount="18" 
+                width="100%" 
+                height="100%"
+                οnmοuseοver="this.stop();" 
+                οnmοuseοut="this.start();"
+            > 
+                <span>1111111111</span>
+                <span>2222222222</span>
+                <span>3333333333</span>
+            </marquee>
+        </div>
+        <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            // 滚动字幕
+            marquee()
+            function marquee() {
+                var scrollWidth = $('#app').width();
+                var textWidth = $('.app').width();
+                var i = scrollWidth;
+                setInterval(function() {
+                    i--;
+                    if(i < -textWidth ) {
+                        i = scrollWidth;
+                    }
+                    $('.app').animate({'left': i+'px'}, 8);
+                }, 10);
+            }
+        </script>
+        <script>
+            // 刷新党建外链网页  当点击外链网页中的链接时  刷新返回首页
+            // var index = $(this).index();
+            // if(index===1){
+            //     var iframe = document.getElementById('party');
+            //     iframe.setAttribute('src', 'http://www.zjwldj.gov.cn/')
+            // }
+        </script>
 </body>
 </html>
