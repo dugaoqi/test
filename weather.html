@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #app{
+            width:300px;
+            height:60px;
+            border:1px #e8e8e8 solid;
+        }
+        .weather{
+            width:100%;
+            height:100%;
+            display:flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .weather img{
+            width:30px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+        <div id="app">
+            
+        </div>
+        <script src="http://webapi.amap.com/maps?v=1.4.8&key=6b4f7499227862bcfbf5a677139e08ec&plugin=AMap.Geocoder"></script>
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            // 天气
+            var wIconMap = [
+                '暴雪', '暴雨', '大暴雨', '大雪', '大雨',
+                '冻雨', '多云',"雷阵雨","雷阵雨并伴有冰雹","霾",
+                "晴","沙尘暴","特大暴雨","雾","小雪",
+                "小雨","阴","雨夹雪","阵雪","阵雨","中雪","中雨"
+            ]
+            var wIcon = [
+                'baoxue', 'baoyu', 'dabaoyu', 'daxue', 'dayu',
+                'dongyu', 'duoyun',"leizhenyu","leizhenyubingbanyoubingbao","mai",
+                "qing","shachenbao","tedabaoyu","wu","xiaoxue",
+                "xiaoyu","yin","yujiaxue","zhenxue","zhenyu","zhongxue","zhongyu"
+            ];
+            var weatherTemp = function(selector){
+                setTimeout(function(){
+                    AMap.plugin('AMap.Weather', function() {
+                        var weather = new AMap.Weather();
+                        weather.getLive("上海市", function(err, data) {
+                            if (err) {return}
+                            var i = wIconMap.indexOf(data.weather)
+                            var icon = wIcon[i];
+                            var temperature = data.temperature;
+                            var dom ='<div class="weather">'+
+                                '<img src="./mix/'+icon+'.png" alt="">'+
+                                '<span>'+data.weather+'</span>'+
+                                '<span>'+temperature+'℃</span>'+
+                                '</div>';
+                            $("#app").append(dom);
+                        });
+                    })
+                })
+            }
+            weatherTemp('#app');
+        </script>
+</body>
+</html>
