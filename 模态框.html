@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/mobile/need/layer.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+</head>
+<body>
+    
+    <div class="box">
+        哈哈
+    </div>
+
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.1.1/layer.min.js"></script> -->
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.5.6/layui.all.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+
+      
+
+        $(".box").click(function(){
+            // layer.load(10000)
+            // layer.msg("hello！！！")
+
+            layui.use('layer',function(){
+            var layer=layui.layer;
+            layer.confirm("确认删除吗？")
+            // layer.msg("hello world")
+
+        })
+       
+        
+        })
+    })
+
+    </script>
+</body>
+</html>

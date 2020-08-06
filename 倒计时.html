@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>js简单时分秒倒计时</title>
+</head >
+<body>
+    <body>
+        <div class="timer">
+            <span id="_d"></span>
+            <span id="_h"></span>
+            <span id="_m"></span>
+            <span id="_s"></span>
+        </div>
+    </body>
+
+
+
+
+
+    <script type="text/javascript">
+        function countTime() {
+            //获取当前时间
+            var date = new Date();
+            var now = date.getTime();
+            //设置截止时间
+            var endDate = new Date("2020-7-31 00:00:00");
+            var end = endDate.getTime();
+            //时间差
+            var differTime = end - now;
+            //定义变量,h,m,s保存倒计时的时间
+            var h, m, s;
+            if (differTime >= 0) {
+                d = Math.floor(differTime / (1000 * 60 * 60 * 24));
+                h = Math.floor(differTime / (1000 * 60 * 60) % 24);
+                m = Math.floor(differTime / (1000 * 60) % 60);
+                s = Math.floor(( differTime / 1000) % 60);
+               
+                h = h < 10 ? ("0" + h) : h;
+                m = m < 10 ? ("0" + m) : m;
+                s = s < 10 ? ("0" + s) : s;
+                // document.getElementById("_d").innerHTML = d + "天";
+                // document.getElementById("_h").innerHTML = h + "时";
+                // document.getElementById("_m").innerHTML = m + "分";
+                // document.getElementById("_s").innerHTML = s + "秒";
+                 $("#_d").html(d + "天");
+                 $("#_h").html(h + "时");
+                 $("#_m").html(m + "分");
+                 $("#_s").html(s + "秒");
+                
+                // document.getElementsByClassName("timer")[0].innerHTML = d + "天"+h + "时"+m + "分"+s + "秒";
+
+                setTimeout(countTime, 1000);
+     
+            } else {
+                // document.getElementsByClassName("timer")[0].innerHTML = 00 + "天"+00 + "时"+00 + "分"+00 + "秒";
+
+                // document.getElementById("_d").innerHTML = "00天";
+                // document.getElementById("_h").innerHTML = "00时";
+                // document.getElementById("_m").innerHTML = "00分";
+                // document.getElementById("_s").innerHTML = "00秒";
+                 $("#_d").html(00 + "天");
+                 $("#_h").html(00 + "时");
+                 $("#_m").html(00 + "分");
+                 $("#_s").html(00 + "秒");
+            }
+        }
+        countTime()
+    </script>
+    
+</body>
+</html>

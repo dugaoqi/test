@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>rem</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            text-decoration: none;
+            list-style: none;
+            outline: none;
+            border:none;
+        }
+       
+        @media screen and(min-width:320px) {
+            html,body{
+                font-size:10px
+            }
+        }
+        @media screen and(min-width:460px) {
+            html,body{
+                font-size:18px
+            }
+        }
+        @media screen and(min-width:750px) {
+            html,body{
+                font-size:24px
+            }
+        }
+        @media screen and(min-width:1200px) {
+            html,body{
+                font-size:32px
+            }
+        }
+
+
+        .box{
+            width:20rem;
+            height:10rem;
+            background-color:#333;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+    
+
+
+    <div class="box"></div>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // $(function() {
+        //     function setRem() {
+        //         var clientWidth = $(window).width();
+        //         var nowRem = (clientWidth / 375 * 10);
+        //         if (nowRem > 48) {
+        //             $("html").css("font-size", parseInt(48) + "px");
+        //         } else {
+        //             $("html").css("font-size", parseInt(nowRem, 12) + "px");
+        //         }
+        //     };
+        //     setRem();
+
+        //     var timer;
+        //     $(window).bind("resize", function() {
+        //         clearTimeout(timer)
+        //         timer = setTimeout(function() {
+        //             setRem();
+        //         }, 100)
+        //     })
+        // });
+    </script>
+</body>
+</html>

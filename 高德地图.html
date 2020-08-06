@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #map {
+				/*vh:CSS中相对长度单位，表示相对视口高度（Viewport Height），1vh = 1% * 视口高度。*/
+				width: 80vw;
+				height: 80vh;
+				margin: 10vh auto;
+			}
+    </style>
+</head>
+<body>
+    
+    <div id="map"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://webapi.amap.com/maps?v=1.4.2&key=4e2c29a761a9c245ddd69c5e64be66a5"></script>
+    <script>
+        var map, marker;
+		//加载地图，调用浏览器定位服务
+		map = new AMap.Map('map', {
+			resizeEnable: true,
+			zoom: 20,
+			center: [121.432984,31.251096] //[经度，纬度] 北京地点坐标[116.397428, 39.90923] 
+		});
+		marker = new AMap.Marker({
+			map: map,
+			position: [121.432984,31.251096], //基点位置
+			draggable: true, //标记点可拖拽
+			//复杂图标
+			icon: new AMap.Icon({
+				//图标大小
+				size: new AMap.Size(28, 37),
+				//大图地址
+				image: "http://webapi.amap.com/images/custom_a_j.png",
+				imageOffset: new AMap.Pixel(-28, 0)
+			}),
+		});
+    </script>
+</body>
+</html>

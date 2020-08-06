@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/4.5.0/css/swiper.min.css">
+    <style>
+        .swiper-container {
+            /* width: 340px; */
+            width: 680px;
+            height: 260px;
+        } 
+    </style>
+</head>
+<body>
+    
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            
+        </div>
+        <!-- 如果需要分页器 -->
+        <!-- <div class="swiper-pagination"></div> -->
+        
+        <!-- 如果需要导航按钮 -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+        
+        <!-- 如果需要滚动条 -->
+        <!-- <div class="swiper-scrollbar"></div> -->
+    </div>
+   
+
+
+    
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/Swiper/4.5.0/js/swiper.min.js"></script>
+    <script>
+       
+
+        const imgsMobile = [
+            'http://zisha.lztqdz.com/img/inquiryPd/goods/1/05/105.jpg',
+            'http://zisha.lztqdz.com/img/inquiryPd/goods/1/04/104.jpg',
+            'http://zisha.lztqdz.com/img/inquiryPd/goods/1/01/101.jpg',
+        ];
+
+        let tupian = "";
+        for (let i of imgsMobile) {
+            tupian += `<div class="swiper-slide"> <img src = "${i}" ></div>`;
+        }
+        $(".swiper-wrapper").html(tupian);
+
+
+        var mySwiper = new Swiper ('.swiper-container', {
+            slidesPerView: 2,
+            direction: 'horizontal', // 垂直切换选项
+            loop: true, // 循环模式选项
+            autoplay: {
+					delay: 2000,
+				}, //自动滑动，2秒切换一次
+            effect: 'slide', //滑动效果
+            touchAngle: 30, //滑动的角度超过30度无效
+            autoplayDisableOnInteraction: true,
+            // // 如果需要分页器
+            // pagination: {
+            //     el: '.swiper-pagination',
+            // },
+            
+            // // 如果需要前进后退按钮
+            // navigation: {
+            //     nextEl: '.swiper-button-next',
+            //     prevEl: '.swiper-button-prev',
+            // },
+            
+            // // 如果需要滚动条
+            // scrollbar: {
+            //     el: '.swiper-scrollbar',
+            // },
+        })        
+
+    </script>
+</body>
+</html>

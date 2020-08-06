@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./img/iconfont/iconfont.css">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+            border:none;
+            outline: none;
+        }
+        img{
+            max-width:100%;
+            height:auto;
+            display: inline-block;
+        }
+
+
+
+        .container{
+            width:100%;
+            overflow:hidden;
+            background:#ccc;
+        }
+        .wrap{
+            width:80%;
+            margin:0 auto;
+            overflow:hidden;
+            padding:20px;
+        }
+        .wrap .search{
+            float:left;
+            width:300px;
+            height:40px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            margin-top:8px;
+            margin-left:40%;
+        }
+        .search input{
+            height:40px;
+        }
+        .search input:first-child{
+            width:240px;
+            background:#fff url(./img/搜索.svg) no-repeat 10px center;
+            background-size: 20px 20px;
+            text-indent: 36px;
+            box-sizing: content-box;
+        }
+        .search input:last-child{
+            width:60px;
+        }
+        .wrap .car{
+            float:left;
+            width:40px;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin-left:10%;
+        }
+        .wrap .car img{
+            width:40px;
+        }
+        .wrap .car span{
+            font-size: 12px;
+            color:#000;
+        }
+        /* ---------- */
+        
+       
+       
+
+        .icon_box{
+            width:80%;
+            height:50px;
+            margin:auto;
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @font-face {
+            font-family: 'iconfont';  /* project id 1984778 */
+            src: url('//at.alicdn.com/t/font_1984778_j220hxe88d.eot');
+            src: url('//at.alicdn.com/t/font_1984778_j220hxe88d.eot?#iefix') format('embedded-opentype'),
+            url('//at.alicdn.com/t/font_1984778_j220hxe88d.woff2') format('woff2'),
+            url('//at.alicdn.com/t/font_1984778_j220hxe88d.woff') format('woff'),
+            url('//at.alicdn.com/t/font_1984778_j220hxe88d.ttf') format('truetype'),
+            url('//at.alicdn.com/t/font_1984778_j220hxe88d.svg#iconfont') format('svg');
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 36px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+    </style>
+</head>
+<body>
+
+
+    <!-- 方法一:直接下载 -->
+    <div class="container">
+        <div class="wrap">
+            <div class="search">
+                <input type="text" placeholder="请输入搜索关键字">
+                <input type="button" value="查找">
+            </div>
+            <a href="javascript:void(0);" class="car">
+                <img src="./img/购物车.svg" alt="">
+                <span>购物车</span>
+            </a>
+
+        </div>
+    </div>
+
+<!-- 方法二:fontclass引用-->
+    <div class="icon_box">
+        <span class="iconfont icon-1"></span>
+        <span class="iconfont icon-fenlei"></span>
+        <span class="iconfont icon-zixundianhua"></span>
+        <span class="iconfont icon-wode"></span>
+    </div>
+<!-- 方法三:Unicode引入 -->
+    <div class="icon_box">
+        <span class="iconfont">&#xe613;</span>
+        <span class="iconfont">&#xe600;</span>
+        <span class="iconfont">&#xe640;</span>
+        <span class="iconfont">&#xe638;</span>
+    </div>
+</body>
+</html>

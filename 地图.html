@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>地图</title>
+		<style>
+			#map {
+				/*vh:CSS中相对长度单位，表示相对视口高度（Viewport Height），1vh = 1% * 视口高度。*/
+				width: 80vw;
+				height: 80vh;
+				margin: 10vh auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+	</body>
+
+
+	<script src="https://webapi.amap.com/maps?v=1.4.2&key=4e2c29a761a9c245ddd69c5e64be66a5"></script>
+
+	<script>
+		var map, marker, geolocation;
+		//加载地图，调用浏览器定位服务
+		map = new AMap.Map('map', {
+			resizeEnable: true,
+			zoom: 11,
+			// center: [114.022134, 34.729465] //[经度，纬度] 北京地点坐标[116.397428, 39.90923] 
+		});
+		marker = new AMap.Marker({
+			map: map,
+			position: [121.50996, 31.31662], //基点位置
+			draggable: true, //标记点可拖拽
+			//复杂图标
+			icon: new AMap.Icon({
+				//图标大小
+				size: new AMap.Size(28, 37),
+				//大图地址
+				image: "http://webapi.amap.com/images/custom_a_j.png",
+				imageOffset: new AMap.Pixel(-28, 0)
+			}),
+		});
+
+		//创建右键菜单
+		var contextMenu = new AMap.ContextMenu();
+		//右键获取坐标
+		contextMenu.addItem("获取坐标", function(e) {
+			console.log(contextMenuPositon.lng + "," + contextMenuPositon.lat)
+		}, 0);
+		map.on('rightclick', function(e) {
+			contextMenu.open(map, e.lnglat);
+			contextMenuPositon = e.lnglat;
+		});
+
+		map.plugin('AMap.Geolocation', function() {
+			geolocation = new AMap.Geolocation({
+				enableHighAccuracy: true, //是否使用高精度定位，默认:true
+				timeout: 20000, //超过10秒后停止定位，默认：无穷大
+				buttonOffset: new AMap.Pixel(10, 20), //定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
+				zoomToAccuracy: true, //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
+				buttonPosition: 'RB'
+			});
+			geolocation.getCurrentPosition();
+			AMap.event.addListener(geolocation, 'complete', function onComplete(data) {
+				console.log(data.position.getLat(), data.position.getLng())
+				regeocoder([data.position.getLng(), data.position.getLat()])
+			}); //返回定位信息
+		});
+
+		function regeocoder(pos) { //逆地理编码
+			var geocoder = new AMap.Geocoder({
+				radius: 1000,
+				extensions: "all"
+			});
+			geocoder.getAddress(pos, function(status, result) {
+				if (status === 'complete' && result.info === 'OK') {
+					console.log(result)
+				}
+			});
+		}
+	</script>
+</html>

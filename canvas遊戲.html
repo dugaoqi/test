@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>弹弹球</title>
+    <script type="text/ecmascript">
+        var drawWorker;//重绘的事件
+        var result = 0;//整形，游戏坚持的时间，秒
+        var record = 0;//整形，游戏的记录
+        var timeWorker;//计时的事件，每秒一次
+
+        var pointRadius = 10;//球的半径
+        var pointX = 20;//球的圆心x坐标
+        var pointY = 20;//球的圆心y坐标
+
+        var speedX = 10;//球向右移动的速度
+        var speedY = 5;//球向下移动的速度
+
+        var panelX = 0;//小方块的最左边的x坐标
+        var panelY = 280;//小方块的最上端的y坐标
+        var panelHeight = 20;
+        var panelWidth = 100;
+
+        var wholeWidth = 500;
+        var wholeHeight = 300;
+
+        var canvas;
+        var ctx;
+
+        function Init() {
+            canvas=document.getElementById("myCanvas");
+            ctx = canvas.getContext("2d");
+
+            ctx.strokeRect(0, 0, wholeWidth, wholeHeight);
+        }
+
+        function DrawBall() {
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+
+            ctx.clearRect(1, 1, wholeWidth-2, wholeHeight-2);　　　　　　　　　　　　//清理矩形范围
+
+            pointX = pointX + speedX;//新的圆心x坐标
+            pointY = pointY + speedY;//新的圆心y坐标
+
+            ctx.beginPath();　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　//弹弹球
+            ctx.arc(pointX, pointY, pointRadius, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillRect(panelX, panelY, panelWidth, panelHeight);　　　　　　　　　　//小方块
+        }
+
+        function MoveBall() {
+            if (pointY >= wholeHeight - panelHeight) {
+                if (pointX < panelX || pointX > panelX + panelWidth) {
+
+                    EndGame();　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　//越过小方块，游戏结束
+                    return;
+                }
+                else {
+                    speedX = speedX > 0 ? speedX + 5 : speedX - 5;　　　　　　　　　　　　//碰到小方块，小球加速
+                    speedY = speedY > 0 ? speedY + 5 : speedY - 5;
+                }
+            }
+
+            if (pointX >= wholeWidth || pointX<=0) {　　　　　　　　　　　　　　　　　　　　//接触到边界，对应的方向转向
+                speedX = speedX - 2 * speedX;
+            }
+
+            if (pointY >= wholeHeight - panelHeight || pointY <= 0) {
+                speedY = speedY - 2 * speedY;
+            }
+
+                DrawBall();
+
+        }
+
+        function MovePanel(event) {
+            panelX = event.pageX - (panelWidth / 2);
+        }
+
+        function AddResult() {
+            result = result + 1;
+            var resultLabel = document.getElementById("currentLabel");
+            resultLabel.textContent = result;
+        }
+
+        function Play() {
+            pointX =Math.floor( Math.random() * 20) + 10;//球的圆心x坐标
+            pointY = Math.floor(Math.random() * 20) + 10;//球的圆心y坐标
+
+            speedX = 20;//球向右移动的速度
+            speedY = 10;//球向下移动的速度
+
+            result = 0;　　　　　　　　　　　　　　
+
+            drawWorker = setInterval(MoveBall, 100);　　　　　　　　　　　　　　　　　　　　//每100毫秒就重绘小球跟小方块位置
+            timeWorker = setInterval(AddResult, 1000);　　　　　　　　　　　　　　　　　　  //每秒更新结果
+
+            canvas.addEventListener("mousemove", MovePanel, false);　　　　　　　　　　   //开始玩，需要将所有相关参数都再初始化
+ 
+        }
+
+        function EndGame() {　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 //游戏结束
+            clearInterval(timeWorker);　　　　　　　　　　　　　　　　　　　　　　　　　　　　 //停止两个定时任务
+            clearInterval(drawWorker);
+
+            canvas.removeEventListener("mousemove", MovePanel, false);　　　　　　　　　　//移除鼠标移动事件的处理
+
+            if (result > record) {
+                record = result;
+                var recordLabel = document.getElementById("recordLabel");
+                recordLabel.textContent = result;
+            }
+            result = 0;
+        }
+    </script>
+</head>
+<body onload="Init();">
+    <canvas id="myCanvas" width="500" height="300">your broswer does not support canvas.</canvas>
+    <br />
+    <input type="button" value="play" onclick="Play();" />
+    <br />
+    <label>本次结果：</label>
+    <label id="currentLabel">0</label>
+    <br />
+    <label>最高纪录：</label>
+    <label id="recordLabel">0</label>
+</body>
+</html>

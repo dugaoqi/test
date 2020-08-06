@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .lazy{
+            width:200px;
+            margin:0 auto;
+        }
+        .lazy img{
+            display:block;
+            width:100%;
+            height:auto;
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="lazy">
+        <img class="lazyload" alt="1" data-original="http://img4.imgtn.bdimg.com/it/u=1878067600,3935137756&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=3844233833,3942617167&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img3.imgtn.bdimg.com/it/u=346230831,1833217134&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=354463615,3836278171&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img1.imgtn.bdimg.com/it/u=779005622,2247570143&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img4.imgtn.bdimg.com/it/u=1878067600,3935137756&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=3844233833,3942617167&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img3.imgtn.bdimg.com/it/u=346230831,1833217134&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=354463615,3836278171&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img1.imgtn.bdimg.com/it/u=779005622,2247570143&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img4.imgtn.bdimg.com/it/u=1878067600,3935137756&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=3844233833,3942617167&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img3.imgtn.bdimg.com/it/u=346230831,1833217134&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=354463615,3836278171&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img1.imgtn.bdimg.com/it/u=779005622,2247570143&fm=200&gp=0.jpg">
+        <img class="lazyload" alt="1" data-original="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+    <!-- <script src="./js/lazyload.js"></script> -->
+    <script>
+        $(".lazyload").lazyload({
+            threshold: 200, //设置临界点
+            effect: "fadeIn", //使用特效
+            failure_limit: 20, //当图片不连续时,通过 failurelimit 选项来控制加载行为.
+            skip_invisible: false, //加载隐藏图片
+        });
+    </script>
+  </body>
+</html>

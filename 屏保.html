@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="author" content="智能社 - zhinengshe.com">
+
+<meta name="copyright" content="智能社 - zhinengshe.com">
+
+<meta name="viewport"
+
+content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<title>智能社 - www.zhinengshe.com</title>
+
+<style>
+
+*{margin:0;padding:0;}
+
+html,body{
+
+height: 100%;
+
+overflow: hidden;
+
+}
+
+body{
+
+background: #000;
+
+}
+
+#c1{
+
+background: #000;
+
+}
+
+</style>
+
+<script>
+
+function rnd(m,n){
+
+return parseInt(m+Math.random()*(n-m));
+
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+
+var oC = document.getElementById('c1');
+
+var gd = oC.getContext('2d');
+
+var winW = document.documentElement.clientWidth;
+
+var winH = document.documentElement.clientHeight;
+
+oC.width = winW;
+
+oC.height = winH;
+
+var N = 5;
+
+var LEN=50;//尾巴数量
+
+var oldArr=[];
+
+var aPoint = [];
+
+for(var i = 0;i<N;i++){
+
+aPoint[i] = {
+
+x:rnd(0,winW),
+
+y:rnd(0,winH),
+
+iSpeedX:rnd(-10,10),// 下一个位置
+
+iSpeedY:rnd(-10,10)
+
+};
+
+}
+
+setInterval(function(){
+
+//先清理画布
+
+gd.clearRect(0,0,oC.width,oC.height);//
+
+for(var i = 0;i<aPoint.length;i++){
+
+//画图
+
+aPoint[i].x+=aPoint[i].iSpeedX;
+
+aPoint[i].y+=aPoint[i].iSpeedY;
+
+//碰撞范围
+
+if(aPoint[i].x<0){
+
+aPoint[i].iSpeedX*=-1;
+
+aPoint[i].x=0;
+
+}
+
+if(aPoint[i].x>oC.width){
+
+aPoint[i].iSpeedX*=-1;
+
+aPoint[i].x=oC.width;
+
+}
+
+if(aPoint[i].y<0){
+
+aPoint[i].iSpeedY*=-1;
+
+aPoint[i].y=0;
+
+}
+
+if(aPoint[i].y>oC.height){
+
+aPoint[i].iSpeedY*=-1;
+
+aPoint[i].y=oC.height;
+
+}
+
+//点
+
+drawPoint(aPoint[i]);
+
+}
+
+//抬起画笔
+
+gd.beginPath();
+
+//连线
+
+gd.strokeStyle='#fff';
+
+gd.moveTo(aPoint[0].x,aPoint[0].y);
+
+for(var i=1;i<aPoint.length;i++){
+
+gd.lineTo(aPoint[i].x,aPoint.y);
+
+}
+
+gd.closePath(); //缝合
+
+gd.stroke();
+
+//画尾巴
+
+var arr=[];
+
+for(var i=0;i<aPoint.length;i++){
+
+arr[i]={
+
+x:aPoint[i].x,
+
+y:aPoint[i].y
+
+};
+
+}
+
+oldArr.push(arr);
+
+if(oldArr.length>LEN){
+
+oldArr.shift();
+
+}
+
+gd.beginPath();
+
+gd.strokeStyle='#fff';
+
+for(var i=0;i<oldArr.length;i++){
+
+gd.moveTo(oldArr[i][0].x,oldArr[i][0].y);
+
+for(var j=1;j<oldArr[i].length;j++){
+
+gd.lineTo(oldArr[i][j].x,oldArr[i][j].y);
+
+}
+
+gd.closePath();
+
+gd.stroke();
+
+}
+
+},16);
+
+function drawPoint(p){
+
+var pW = 1;
+
+var pH = 1;
+
+gd.fillStyle = '#fff';
+
+gd.fillRect(p.x-pW/2,p.y-pH/2,pW,pH)
+
+}
+
+},false);
+
+</script>
+
+</head>
+
+<body>
+
+<canvas id="c1"></canvas>
+
+</body>
+
+</html>
