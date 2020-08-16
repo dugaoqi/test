@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box"></div>
+    <script>
+
+        // 事件监听（事件绑定方式）
+        var obox=document.getElementsByClassName('box')[0];
+        obox.addEventListener('click',function(){
+            console.log('hhh')
+        })
+        obox.addEventListener('click',fn1);
+        function fn1(){
+            console.log('ooo')
+        }
+        obox.removeEventListener('click',fn1)
+        // obox.attachEvent("onclick",fn1)
+        // obox.detachEvent("onclick",fn1)
+
+
+        function addEvent(ele,myEvent,callback){
+            if(addEventListener){
+                ele.addEventListener(myEvent,callback,false);
+            }else if(attachEvent){
+                ele.attachEvent("on"+myEvent,callback)
+            }else{
+                ele['on'+myEvent]=callback
+            }
+        }
+       
+        function removeEvent(ele,myEvent,callback){
+            if(removeEventListener){
+                ele.removeEventListener(myEvent,callback,false);
+            }else if(detachEvent){
+                ele.detachEvent("on"+myEvent,callback)
+            }else{
+                ele['on'+myEvent]=null
+            }
+        }
+
+        addEvent(document,'click',fn2)
+        function fn2(){
+            console.log('jjj')
+        }
+        removeEvent(document,'click',fn2)
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background-color:red;
+            position:absolute;
+            top:100px;
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+    <script>
+        var obox=document.getElementsByClassName('box')[0];
+        console.log(obox);
+        //各种尺寸
+
+
+        // 获取自身宽度  offsetWidth(只能获取，不能设置)
+        console.log(obox.offsetWidth)
+        console.log(obox.offsetHeight)
+        console.log(obox.offsetLeft)
+        console.log(obox.offsetTop)
+        //获取最近的定位父级元素
+        console.log(obox.offsetParent)
+
+        console.log(document.documentElement.clientWidth)
+        console.log(document.documentElement.clientHeight)
+        console.log(document.body.clientWidth)
+        console.log(document.body.clientHeight)
+
+        // 设置样式通过   元素.style.样式属性
+        console.log(obox.style.width=200+'px')
+
+
+
+        //获取样式
+        console.log(getComputedStyle(obox,false).width)
+        console.log(getComputedStyle(obox,false).height)
+        console.log(getComputedStyle(obox,false).backgroundColor)
+        //兼容IE
+        // console.log(obox.currentStyle.width)//该方法正常浏览器会报错
+
+        //函数封装
+        function getstyle(ele,attr){
+            if(ele.currentStyle){
+                return ele.currentStyle[attr];//当对象的属性为变量是用中括号表示
+            }else{
+                return getComputedStyle(ele,false)[attr];
+            }
+        }
+
+        var a=getstyle(obox,'height')
+        console.log(a,'000')
+    </script>
+</body>
+</html>

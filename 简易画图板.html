@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pos{
+            position:fixed;
+            left:0;
+            bottom:0;
+        }
+        .dian{
+            /* width:10px;
+            height:10px;
+            background-color:red; */
+            border-radius:50%;
+            position:absolute;
+        }
+        input{
+            position:absolute;
+            top:40px;
+            z-index:9999;
+        }
+       
+        input:nth-child(2){
+            left:80px;
+        }
+        input:nth-child(3){
+            left:120px;
+        }
+    </style>
+</head>
+<body>
+    
+    <span class="pos"></span>
+    <input type="button" value="粗" onclick="cu()">
+    <input type="button" value="细" onclick="xi()">
+    <input type="button" value="变色" onclick="s()">
+    <script>
+        var opos=document.getElementsByClassName('pos')[0]
+        var w=10;
+        var h=10;
+        var se="black";
+        
+        document.onmousemove=function(e){
+            var e=e||window.event;
+            opos.innerHTML=e.pageX+','+e.pageY;
+            var div=document.createElement('div');
+            div.className='dian';
+            div.style.left=e.pageX+'px';
+            div.style.top=e.pageY+'px';
+            div.style.width=w+'px';
+            div.style.height=h+'px';
+            div.style.backgroundColor=se;
+            document.body.appendChild(div)
+        }
+        function cu(){
+            w+=5;
+            h+=5;
+        }
+        function xi(){
+            if(w>5){
+                w-=5;
+                h-=5
+            }else{
+                w=5;
+                h=5;
+            }
+        }
+        function s(){
+            se="red";
+        }
+    </script>
+</body>
+</html>

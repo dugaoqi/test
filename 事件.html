@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:150px;
+            height:150px;
+            background-color:red;
+        }
+        .fox{
+            width:100px;
+            height:100px;
+            background-color:blue;
+        }
+        ul{
+            background-color:red;
+            overflow:hidden;
+        }
+        ul li{
+            background-color:blue;
+            margin:10px 0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="fox"></div>
+    </div>
+
+
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <script>
+        var box=document.getElementsByClassName('box')[0]
+        var fox=document.getElementsByClassName('fox')[0]
+
+        box.onclick=function(){
+            console.log('box')
+        }
+        fox.onclick=function(e){
+            //阻止事件冒泡
+            var e=e||window.event;
+            if(e.concelBubble){
+                e.concelBubble=true
+            }else{
+                e.stopPropagation()
+            }
+            console.log('fox')
+        }
+        fox.oncontextmenu=function(e){
+            //阻止默认事件
+            var e=e|| window.event;
+            if(e.returnValue){
+                e.returnValue=false
+            }else{
+                e.preventDefault()
+            }
+            console.log('右键')
+        }
+
+
+        // 事件委托
+        var oul=document.getElementsByTagName('ul')[0];
+        oul.onclick=function(e){
+            var e=e||window.event;
+            var target=e.target||e.srcElement;
+            if(target.nodeName=="LI"){
+                console.log(target.innerHTML)
+            }
+        }
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            width:100px;
+            height:100px;
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">按钮</div>
+    <script>
+
+        var obtn=document.querySelector('.btn');
+        console.log(obtn,'000')
+        // obtn.onclick=function(){
+        //     console.log(window.event,'999')
+
+        //     //相对事件源的坐标
+        //     console.log(window.event.offsetX)
+        //     console.log(window.event.offsetY)
+        //     //相对窗口的坐标
+        //     console.log(window.event.clientX)
+        //     console.log(window.event.clientY)
+        //     //相对页面的坐标
+        //     console.log(window.event.pageX)
+        //     console.log(window.event.pageY)
+        //     //相对屏幕的坐标
+        //     console.log(window.event.screenX)
+        //     console.log(window.event.screenY)
+            
+        // }
+        // obtn.onmousedown=function(){
+        //     //判断鼠标按键code
+        //     console.log(window.event.button);
+        //     //判断时间类型
+        //     console.log(window.event.type);
+        //     //判断事件源
+        //     console.log(window.event.target)
+        //     console.log(window.event.srcElement)
+        // }
+
+            // 事件对象的兼容处理、
+            obtn.onclick=function(e){
+                //正常浏览器||IE浏览器
+                var e=e||window.event;
+                console.log(e)
+            }
+
+    </script>
+</body>
+</html>
