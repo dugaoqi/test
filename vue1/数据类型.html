@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div id="app">
+           <div>数字:{{num}}</div>
+           <div>布尔:{{bl}}</div>
+           <div>字符串:{{str}}</div>
+           <div>对象:{{obj}}</div>
+           <div>数组:{{arr}}</div>
+
+           <!-- undefined和null不被渲染 -->
+           <div>un:{{un}}</div>
+           <div>nu:{{nu}}</div>
+        </div>
+
+        <!-- model层和view层具有相同的作用域 -->
+    <script src="./vue.js"></script>
+    <script>
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                num:123,
+                str:"哈哈哈",
+                bl:true,
+                arr:["qw",12,"wer"],
+                obj:{a:1,b:3},
+                un:undefined,
+                nu:null
+            },
+        })
+    </script>
+</body>
+</html>

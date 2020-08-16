@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{title}}</h3>
+        <div ref="m1">dshafghpeur</div>
+        <div ref="m2">dstkhnml00000eur</div>
+        <div>{{fmsg}}</div>
+        <aa  ref="m3"></aa>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        
+        let aa={
+            template:`
+                <div>
+                    <div>子组件</div>
+                    <div>{{msg}}</div>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:"",
+                    msg2:"子组件数据",
+                }
+            },
+            mounted(){
+                console.log(this.$parent.title);
+                this.msg=this.$parent.title;
+            }
+        }
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                title:"标题",
+                fmsg:"",
+            },
+            components:{
+                aa
+            },
+            mounted(){
+                this.$refs.m1.style.backgroundColor="red";
+                this.$refs.m2.innerHTML="red;red;red";
+                console.log(this.$refs,this.$refs.m3);
+                this.fmsg=this.$refs.m3.msg2;
+            },
+        });
+    </script>
+
+
+    <div id="app2">
+        <div>{{text}}</div>
+        <v-childa @sendmsg="getmsg"></v-childa>
+        <v-childb :sendtext="text"></v-childb>
+        
+    </div>
+    <script>
+
+        let childA={
+            template:`
+                <div>
+                    <h3>子组件A</h3>
+                    <div>{{msg}}</div>
+                </div>
+            `,
+            data(){
+                return{
+                    msg:"哈哈",
+                };
+            },
+            mounted(){
+                this.$emit("sendmsg",this.msg)
+            },
+        };
+       
+        let childB={
+            props:["sendtext"],
+            template:`
+                <div>
+                    <h3>子组件B</h3>
+                    <div>{{msg2}}</div>
+                    <div>{{sendtext}}</div>
+                </div>
+            `,
+            data(){
+                return{
+                    msg2:"kong",
+                };
+            },
+            mounted(){
+                console.log(this.sendtext,'000000')
+            }
+        };
+        const vm2=new Vue({
+            el:"#app2",
+            data:{
+                text:"kongkong",
+            },
+            components:{
+                "v-childa":childA,
+                "v-childb":childB,
+            },
+            methods:{
+                getmsg(data){
+                    console.log(data,'00000');
+                    this.text=data;
+                }
+            },
+        });
+    </script>
+
+
+</body>
+</html>

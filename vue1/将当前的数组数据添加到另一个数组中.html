@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        .active{
+            background-color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li 
+                v-for="(item,index) of list" 
+                :key="index"
+                :class="{active:index==current && current!==''}"
+                v-on:click="choose(index)"
+            >{{item}}</li>
+        </ul>
+        <button @click="add">添加</button>
+        <ul>
+            <li
+                v-for="(val,index) of mylist" 
+                :key="index"
+            >{{val}}</li>
+        </ul>
+    </div>
+    <script>
+
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                list:[1,2,3,4,5,6],
+                mylist:[],
+                current:'',
+            },
+            methods:{
+                choose(i){
+                    this.current=i;
+                    // this.mylist.push(this.list[this.current])
+                },
+                add(){
+                    if(this.current===''){
+                        return
+                    }else{
+                        this.mylist.push(this.list[this.current])
+                    }
+                    this.current='';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

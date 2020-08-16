@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width:100px;
+            height:100px;
+            background-color:red;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!-- <div v-color="'pink'">box1</div>
+    <div>box2</div>
+    <div v-color>box3</div>
+    <div v-color="'blue'">box4</div> -->
+
+
+    <!-- <div v-color>demo2</div> -->
+
+    
+    <input type="text">
+    <input type="text" v-focus>
+    <input type="text">
+</div>
+
+<div id="app2">
+   <div class="box" v-drag></div>
+</div>
+<script src="./vue.js"></script>
+<script>
+
+    // Vue.directive("color",function(el,binding){
+    //     el.style.backgroundColor=binding.value||"red";
+    // })
+
+        Vue.directive('focus',{
+            inserted(el,binding){
+                el.focus();
+            }
+        })
+
+    // Vue.directive("color",{
+    //     inserted(){
+    //         console.log('绑定指令的元素插入父节点时调用');
+    //     },
+    //     bind(el,binding){
+    //         el.style.backgroundColor="#ccc";
+    //         console.log('指令第一次绑定到元素时调用');
+    //     },
+    //     update(){
+    //         console.log('指令所在元素的model层数据，view层有更新请求时调用');
+    //     },
+    //     componentUpdated(){
+    //         console.log('更新完成时调用');
+    //     },
+    // })
+
+
+
+    const vm=new Vue({
+        el:"#app",
+        data:{
+
+        },
+    })
+    const vm2=new Vue({
+        el:"#app2",
+        data:{
+
+        },
+        directives:{
+           drag(el,binding){
+                el.onmousedown=function(e){
+                    var disX=e.clientX-this.offsetLeft;
+                    var disY=e.clientY-this.offsetTop;
+                    document.onmousemove=function(e){
+                        el.style.left=e.clientX-disX+'px';
+                        el.style.top=e.clientY-disY+'px';
+                    }
+                    document.onmouseup=function(){
+                        document.onmouseup=document.onmousemove=null;
+                    }
+                    return false;
+                }
+           },
+        },
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+
+        用户名:<input type="text" v-model="username">
+        密码:<input type="text" v-model="password">
+
+        <input type="button" @click="add" value="提交">
+
+        <ul>
+            <li v-for="(item,index) of list" :key="item.id">
+                <span>{{item.name}}</span> ---
+                <span>{{item.mima}}</span>
+                <a href="javascript:void(0)" v-on:click="del(index)">删除</a>
+                <a href="javascript:void(0)" v-on:click="change(index,$event)">修改</a>
+            </li>
+        </ul>
+        <input type="text" v-model="changeMessage">
+
+        <div v-on:click="changeobj">
+            {{obj}}
+        </div>
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                username:"",
+                password:"",
+                list:[
+                    {id:1,name:"张三",mima:"admin"},
+                    {id:2,name:"老张",mima:"123456"},
+                ],
+                changeMessage:"",
+
+
+                obj:{a:12,b:90,},
+
+
+
+            },
+            methods:{
+                add(){
+                    if(this.username!="" && this.password!=""){
+                        this.list.push({
+                            id:this.list.length+1,
+                            name:this.username,
+                            mima:this.password,
+                        })
+                    }
+                    this.username="";
+                    this.password="";
+                },
+                del(i){
+                    this.list.splice(i,1)
+                },
+                change(index,e){
+                    this.list[index].name="修改后的name";
+                    console.log("修改")
+                    e.target.parentNode.style.backgroundColor="red";
+                    if(this.changeMessage!=""){
+                        this.list[index].mima=this.changeMessage;
+                    }
+                    this.changeMessage="";
+                },
+                changeobj(){
+                    Vue.set(this.obj,"a",100);
+                    this.$set(this.obj,"b",11);
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <dl v-for="(item,index) of list" :key="index">
+            <dt>商品名称:{{item.name}}</dt>
+            <dd>单价:{{item.price | currency}}</dd>
+            <dd>
+                数量:<input type="number" v-model="item.count">
+            </dd>
+            <dd>小计:{{item.price*item.count | currency("￥",3)}}</dd>
+        </dl>
+        <div>总价:{{cptnum | currency("RMB",4)}}</div>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        // Vue.filter('currency',function(data,currency,digit){
+        //     currency=currency || '$';
+        //     digit=digit || 2;
+        //     return currency+data.toFixed(digit);
+        // })
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {name:"西红柿",price:3.14,count:1},
+                    {name:"黄瓜",price:7.2,count:4},
+                    {name:"鸡蛋",price:8.9,count:5},
+                ],
+            },
+            methods:{},
+            directives:{},
+            filters:{
+                currency:function(data,currency,digit){
+                    currency=currency || '$';
+                    digit=digit || 2;
+                    return currency+data.toFixed(digit);
+                },
+                // currency(data,currency,digit){
+                //     currency=currency || '$';
+                //     digit=digit || 2;
+                //     return currency+data.toFixed(digit);
+                // }
+            },
+            computed:{
+                cptnum(){
+                    let result=0;
+                    this.list.map((item,index)=>{
+                        result+=item.price*item.count;
+                    })
+                    return result;
+                }
+            },
+        });
+    </script>
+</body>
+</html>

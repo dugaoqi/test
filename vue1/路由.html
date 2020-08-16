@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app-router-active{
+            background-color:red;
+        }
+        .app-router-product-active{
+            background-color:blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <router-link to="/" active-class="app-router-active">首页</router-link> -->
+        <router-link to="/home" active-class="app-router-active">首页</router-link>
+        <router-link to="/product" active-class="app-router-active">商品页</router-link>
+        <router-link to="/user" active-class="app-router-active">用户页</router-link>
+        <router-link to="/login" active-class="app-router-active">登录页</router-link>
+        <router-link to="/reg" active-class="app-router-active">注册页</router-link>
+        <router-view></router-view>
+    </div>
+    <template id="product">
+        <div>
+            <div>商品页</div>
+            <!-- 子路由传参 -->
+            <router-link to="/product/detail/1" active-class="app-router-product-active">商品列表001</router-link>
+            <router-link to="/product/detail/2?a=1&b=2" active-class="app-router-product-active">商品列表002</router-link>
+           <!-- 命名路由 -->
+            <router-link :to="{name:'detail',params:{id:3},query:{a:11,b:2}}" active-class="app-router-product-active">商品列表003</router-link>
+            <!-- <router-link to="/product/detail?id=1" active-class="app-router-product-active">商品列表001</router-link>
+            <router-link to="/product/detail?id=2" active-class="app-router-product-active">商品列表002</router-link> -->
+            <router-view></router-view> 
+        </div>
+    </template>
+    <template id="detail">
+        <div class="detail">
+            <h3>详情页</h3>
+            <div>参数:{{$route.params.id}}</div>
+            <div>数据:{{$route.query.a}}/{{$route.query.b}}</div>
+            <div>路径:{{$route.path}}</div>
+        </div>
+    </template>
+    <template id="home">
+        <div>
+           <input type="button" value="编程式跳转push" @click="gogo1">
+           <input type="button" value="编程式跳转replace" @click="gogo2">
+        </div>
+    </template>
+    <template id="login">
+        <div>
+           <a href="javascript:void(0)" @click="gohome">-></a>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script src="./vue-router.js"></script>
+
+    <script>
+        let home={
+            template:"#home",
+            methods:{
+                gogo1(){
+                    console.log(this.$router)
+                    // this.$router.push("/login")
+                    // this.$router.push("/product/detail/005?a=12&b=43")
+                    this.$router.push({name:'detail',params:{id:'09'},query:{a:12,b:43}})
+                },
+                gogo2(){
+                    console.log(this.$router)
+                    this.$router.replace("/login")
+                }
+            },
+        }
+        let product={
+            template:"#product"
+        }
+        let detail={
+            template:"#detail",
+            created(){
+                console.log(this.$route)
+            },
+            updated(){
+                console.log(this.$route)
+            }
+        }
+        let user={
+            template:"<div>用户页</div>"
+        }
+        let login={
+            template:"#login",
+            methods:{
+                gohome(){
+                    console.log(this.$router)
+                    this.$router.go(-1)
+                },
+            },
+        }
+        let reg={
+            template:"<div>注册页</div>"
+        }
+        let error={
+            template:"<div>404</div>"
+        }
+
+
+
+        // 路由配置
+        let routes=[
+            // 每个对象代表一个路由的配置
+            {path:"/home",component:home},
+            {
+                path:"/product",
+                component:product,
+                children:[
+                    // {
+                    //     path:"detail",
+                    //     component:detail,
+                    // },
+
+
+                    //动态路有名 
+
+                    {
+                        name:"detail",//命名路由
+                        path:"detail/:id",
+                        component:detail,
+                    },
+
+                    // {
+                    //     path:"detail",
+                    //     component:detail,
+                    //     children:[
+                    //         {
+                    //             path:":id",
+                    //             component:detail,
+                    //         }
+                    //     ],
+                    // }
+                ],
+            },
+            {path:"/user",component:user},
+            {path:"/login",component:login},
+            {path:"/reg",component:reg},
+            // {path:"/",component:home},
+            // 路由重定向
+            {path:"/",redirect:"/home"},
+            {path:"*",component:error},
+        ];
+        // 创建路由对象实例
+        var router=new VueRouter({
+            // 路由配置
+            routes
+            // 更改路由模式，hash和history
+            // mode:"history",
+
+        });
+        var vm=new Vue({
+            el:"#app",
+            // 将路由注册到vue实例上
+            router,
+            data:{},
+        });
+    </script>
+</body>
+</html>

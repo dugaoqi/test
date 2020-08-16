@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>根组件</h3>
+        <span>{{title}}</span>
+        <div>{{text}}</div>
+        <v-child v-bind:fudata="title" @senddata="getdata"></v-child>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                title:"父组件数据",
+                text:"",
+            },
+            components:{
+                "v-child":{
+                    data(){
+                        return{
+                            text:"",
+                        }
+                    },
+                    template:`
+                        <div>
+                            <h3>子组件</h3>
+                            <div>{{text}}</div>
+                            
+                            <div>{{fudata}}</div>
+
+                            <v-child2 :m1="fudata" @sendsundata="getsundata"></v-child2>
+                        </div>
+                    `,
+                    props:["fudata"],
+                    components:{
+                        "v-child2":{
+                            props:["m1"],
+                            template:`
+                                <div>
+                                    <h3>孙组件</h3>
+                                    <span>{{title}}</span>
+                                    <div>{{m1}}</div>
+                                </div>
+                            `,
+                            data(){
+                                return{
+                                    title:"孙组件数据",
+                                }
+                            },
+                            mounted(){
+                                this.$emit("sendsundata",this.title)
+                            }
+                        }
+                    },
+                    methods:{
+                        getsundata(data){
+                            console.log(data);
+                            this.text=data;
+                        },
+                    },
+                    mounted(){
+                        this.$emit("senddata",this.text);
+                    }
+                }
+            },
+            methods:{
+                getdata(data){
+                    this.text=data;
+                }
+            },
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- <aa></aa>
+        <bb></bb> -->
+        <component is="aa"></component>
+        <component :is="'bb'"></component>
+    </div>
+   
+    <script src="./vue.js"></script>
+    <script>
+        let aa={
+            template:"<div>我是AA组件</div>"
+        }
+        let bb={
+            template:"<div>我是bb组件</div>"
+        }
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                
+            },
+            methods:{
+               
+            },
+            computed:{
+                
+            },
+            directives:{
+                
+            },
+            filters:{
+               
+            },
+            components:{
+                aa,bb
+            },
+        });
+    </script>
+</body>
+</html>

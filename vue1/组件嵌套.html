@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{title}}</h3>
+        <v-child></v-child>
+    </div>
+
+    <template id="child">
+        <div>
+            <h3>{{title}}</h3>
+            <div>这是child组件</div>
+            <v-childchild></v-childchild>
+        </div>
+    </template>
+
+    <hr>
+
+    <div id="app2">
+        <h3>{{title}}</h3>
+        <v-child></v-child>
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+        let childchild={
+            template:`<div>
+                    <h3>{{title}}</h3>
+                    <span>这是childchild组件</span>
+                </div>`,
+            data(){
+                return{
+                    title:"这是双child组件",
+                }
+            },
+        }
+        let child={
+            template:"#child",
+            data(){
+                return{
+                    title:"child组件",
+                }
+            },
+            components:{
+                "v-childchild":childchild,
+            },
+        }
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                title:"这是根组件",
+            },
+            components:{
+                "v-child":child,
+            },
+
+        })
+
+
+
+        const vm2=new Vue({
+            el:"#app2",
+            data:{
+               title:"根组件", 
+            },
+            components:{
+                "v-child":{
+                    template:`<div>
+                        <h3>{{title}}</h3>
+                        <div>这是child组件</div>
+                        <v-childchild></v-childchild>
+                    </div>`,
+                    data(){
+                        return{
+                            title:"child组件",
+                        }
+                    },
+                    components:{
+                        "v-childchild":{
+                            template:`<div>
+                                <h3>{{title}}</h3>
+                                <span>这是childchild组件</span>
+                            </div>`,
+                            data(){
+                                return{
+                                    title:"这是childchild组件"
+                                }
+                            },
+                        }
+                    },
+                }
+            }
+        });
+    </script>
+</body>
+</html>

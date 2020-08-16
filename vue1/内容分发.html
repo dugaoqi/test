@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+
+        <div>
+            <list :list="list">
+                <h3 slot="s1">新闻</h3>
+                <a href="javascript:void(0)" slot="s2">more</a>
+            </list>
+        </div>
+        <!-- <div>
+            <h3>新闻</h3>
+            <list :list="list"></list>
+            <a href="javascript:void(0)">more</a>
+        </div> -->
+        <hr>
+        <div>
+            <list :list="list">
+                <a href="javascript:void(0)" slot="s2">more</a>
+                <p>hahahha</p>
+            </list>
+        </div>
+        <!-- <div>
+            <list :list="list"></list>
+            <a href="javascript:void(0)">more</a>
+        </div> -->
+
+        <!-- <list :list="list"></list> -->
+    </div>
+
+    <template id="list">
+        <div class="list">
+            <slot name="s1"></slot>
+            <ul>
+                <li v-for="(item,index) of list" :key="item.id">{{item.id}}/{{item.des}}</li>
+            </ul>
+            <slot name="s2"></slot>
+            <slot></slot>
+        </div>
+    </template>
+
+
+    <script src="./vue.js"></script>
+    <script>
+        let list={
+            template:"#list",
+            props:["list"],
+        }
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                list:[
+                    {id:1,des:"xxx1"},
+                    {id:2,des:"xxx2"},
+                ],
+            },
+            components:{
+                list,
+            },
+        });
+    </script>
+</body>
+</html>

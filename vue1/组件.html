@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bycar{
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <div id="app">
+        <!-- 调用组件 -->
+       <aa></aa>
+
+       <v-bycar></v-bycar>
+    </div>
+
+
+    <div id="app2">
+        <!-- 调用组件 -->
+        <v-bb></v-bb>
+    </div>
+    
+    <template id="bycar">
+        <!-- 组件需要有个根元素包裹 -->
+        <div class="bycar">
+            <dl v-for="(item,index) of list" :key="index">
+                <dt>商品名称:{{item.name}}</dt>
+                <dd>单价:{{item.price | currency}}</dd>
+                <dd>
+                    数量:<input type="number" v-model="item.count">
+                </dd>
+                <dd>小计:{{item.price*item.count | currency("￥",3)}}</dd>
+            </dl>
+            <div>总价:{{cptnum | currency("RMB",4)}}</div>
+        </div>
+    </template>
+    <!-- <script type="x-template" id="bycar">
+        <div>
+            <dl v-for="(item,index) of list" :key="index">
+                <dt>商品名称:{{item.name}}</dt>
+                <dd>单价:{{item.price | currency}}</dd>
+                <dd>
+                    数量:<input type="number" v-model="item.count">
+                </dd>
+                <dd>小计:{{item.price*item.count | currency("￥",3)}}</dd>
+            </dl>
+            <div>总价:{{cptnum | currency("RMB",4)}}</div>
+        </div>
+    </script> -->
+    
+    <script src="./vue.js"></script>
+    <script>
+        //定义组件
+        let Header={
+            template:"<div>我是header组件</div>"
+        }
+        let bycar={
+            template:"#bycar",
+            data(){
+                return {
+                    list:[
+                        {name:"西红柿",price:3.14,count:1},
+                        {name:"黄瓜",price:7.2,count:4},
+                        {name:"鸡蛋",price:8.9,count:5},
+                    ],
+                }
+            },
+            filters:{
+                currency:function(data,currency,digit){
+                    currency=currency || '$';
+                    digit=digit || 2;
+                    return currency+data.toFixed(digit);
+                },
+            },
+            computed:{
+                cptnum(){
+                    let result=0;
+                    this.list.map((item,index)=>{
+                        result+=item.price*item.count;
+                    })
+                    return result;
+                }
+            },
+        }
+        //注册组件
+        Vue.component("aa",Header);
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                
+            },
+            components:{
+                "v-bycar":bycar,
+            },
+
+        })
+        const vm2=new Vue({
+            el:"#app2",
+            //注册组件
+            components:{
+                "v-bb":{
+                    template:"<div>这是bb组件</div>"
+                },
+            },
+            data:{
+                
+            },
+
+        })
+    </script>
+    
+</body>
+</html>

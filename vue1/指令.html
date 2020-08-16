@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指令</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <!-- 指令是自定义的html dom属性 -->
+    <div id="app">
+
+        <!-- 绑定数据的指令v-text 、v-html -->
+        <div v-text="str"></div>
+        <div v-html="str"></div>
+        <!-- 绑定html已有的dom属性，使用v-bind,缩写为冒号 -->
+        <img v-bind:src="imgsrc" alt=""/>
+        <img :src="imgsrc" alt=""/>
+        <!-- 列表循环指令 v-for -->
+        <ul>
+            <li v-for="num in numlist">{{num}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="obj of objlist" :key="obj.id">
+                <a href="obj.id">
+                    {{obj.text}}
+                </a>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="item of list" :key="item.id">
+                <a href="item.id">{{item.text}}</a>
+                <ul>
+                    <li v-for="item2 of item.child" :key="item2.id">
+                        <a href="item2.id">{{item2.text}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div>{{json.a}}/{{json.b}}</div>
+    </div>
+<!-- -------------------------------------------------- -->
+    <div id="app2">
+
+        <div v-show="bl">v-show11111</div>
+        <div v-show="bl2">v-show</div>
+
+        <button v-on:click="changebl">点击</button>
+
+        <div v-if="bl">v-if11111</div>
+        <div v-if="bl2">v-if</div>
+
+        <div v-pre>{{原样输出你指令v-pre}}</div>
+
+        <div v-if="type=='A'">A</div>
+        <div v-else-if="type=='B'">B</div>
+        <div v-else="type=='C'">C</div>
+
+
+        <ul v-once>
+            <li>{{val}}</li>
+        </ul>
+    </div>
+
+
+
+
+    <script>
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                str:"<strong>转义与非转义输出</strong>",
+                imgsrc:"https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png",
+                numlist:[12,21,23],
+                objlist:[
+                    {id:01,text:"哈哈"},
+                    {id:02,text:"呵呵"},
+                    {id:03,text:"嘿嘿"},
+                ],
+                list:[
+                    {id:01,text:"哈哈",child:[
+                        {id:013,text:"嘿嘿"},
+                        {id:014,text:"吼吼"},
+                    ]},
+                    {id:02,text:"呵呵",child:[
+                        {id:013,text:"嘿嘿"},
+                        {id:014,text:"吼吼"},
+                    ]},
+                ],
+
+                json:{a:1,b:2},
+
+            },
+        })
+        // ---------------------------------------------
+        const vm2=new Vue({
+            el:"#app2",
+            data:{
+                bl:true,
+                bl2:false,
+                type:"B",
+                val:"只渲染一次的指令v-once,当数据更改，将不再渲染"
+            },
+            methods:{
+                changebl(){
+                    this.bl=!this.bl;
+                    this.bl2=!this.bl2;
+                }
+            },
+        })
+
+
+    </script>
+
+</body>
+</html>

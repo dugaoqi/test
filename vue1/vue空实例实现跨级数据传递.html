@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>{{title}}</h3>
+        <v-child></v-child>
+        <v-childb></v-childb>
+    </div>
+
+
+    <template id="child">
+        <div>
+            <h3>{{title1}}</h3>
+            <input type="button" value="数据传递" @click="sendmsg"/>
+        </div>    
+    </template>
+    <template id="childb">
+        <div>
+            <h3>{{title2}}</h3>
+            <input type="button" value="数据传递" @click="sendmsg2"/>
+        </div>
+    </template>
+    <script src="./vue.js"></script>
+    <script>
+       
+        var Child={
+            template:"#child",
+            data(){
+                return{
+                    title1:"子组件1",
+                    msg:"子组件1的数据",
+                }
+            },
+            methods:{
+                sendmsg(){
+                    bus.$emit("getmsg2",this.msg)
+                }
+            },
+            mounted(){
+                bus.$on("getmsg",function(data){
+                    console.log(data,"child")
+                })
+            },
+        }
+        var ChildB={
+            template:"#childb",
+            data(){
+                return{
+                    title2:"子组件2",
+                    msg2:"子组件2的数据",
+                }
+            },
+            methods:{
+                sendmsg2(){
+                    bus.$emit("getmsg",this.msg2)
+                }
+            },
+            mounted(){
+                bus.$on("getmsg2",function(data){
+                    console.log(data,"childb")
+                })
+            },
+        }
+        var bus=new Vue({});
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                title:"根实例",
+            },
+            components:{
+              "v-child":Child,
+              "v-childb":ChildB
+            },
+            methods:{
+                
+            },
+            mounted(){
+                bus.$on("getmsg",function(data){
+                    console.log(data,"app")
+                }),
+                bus.$on("getmsg2",function(data){
+                    console.log(data,"app")
+                })
+            },
+        });
+    </script>
+
+</body>
+</html>

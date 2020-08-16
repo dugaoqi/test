@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <div id="app">
+
+        <span>{{text}}</span>
+        
+
+
+        <!-- 绑定事件用v-on，绑定所有原生不带on的事件名，v-on缩可写为@，事件对象用$event传递，且分先后， -->
+        <button v-on:click="reverseMessage(111,$event,12)">点击事件</button>
+        <button @click="reverseMessage($event,12)">点击事件</button>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+
+
+
+
+        const vm=new Vue({
+            data:{
+
+                text:"I love your money!"
+
+            },
+
+            methods:{
+
+                reverseMessage(a,b){
+                    this.text=this.text.split("").reverse().join("");
+                    console.log(a,'111',b)
+                }
+
+            },
+
+        }).$mount("#app")
+
+
+
+    </script>
+</body>
+</html>

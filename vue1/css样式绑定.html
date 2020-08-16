@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        ul li:nth-child(1){
+            background-color:red;
+        }
+        ul li.two{
+            background-color:blue;
+        }
+
+        .a{
+            background-color:red;
+        }
+        .b{
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div id="app">
+        <ul>
+            <li>haha</li>
+            <li class="two">哈哈</li>
+            <li :class="s1">haha</li>
+            <li v-bind:class="'a b'">哈哈</li>
+            <li :class="{a:true,b:false}">haha</li>
+            <li v-bind:class="[{a:true},{b:true}]">哈哈</li>
+        </ul>
+        <ul>
+            <li style="background-color:red;">lala</li>
+            <!-- 对象形式 -->
+            <li v-bind:style="{backgroundColor:'red',width:'300px',}">lala</li>
+           <!-- 字符串形式 -->
+            <li :style="'background-color:red;'">lala</li>
+            <!-- 数组形式 -->
+            <li v-bind:style="[{backgroundColor:'red'},{width:'300px'}]">lala</li>
+        </ul>
+    </div>
+
+
+    <script src="./vue.js"></script>
+    <script>
+
+
+        const vm=new Vue({
+
+            el:"#app",
+            data:{
+                s1:"a b",
+            },
+        })
+    </script>
+</body>
+</html>

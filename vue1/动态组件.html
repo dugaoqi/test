@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- <aa></aa>
+        <bb></bb> -->
+        <component is="aa"></component>
+        <component :is="cp"></component>
+        <component :is="'aa'"></component>
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+        let aa={
+            template:"<div>aa</div>"
+        };
+        let bb={
+            template:"<div>bb</div>"
+        };
+        var vm=new Vue({
+            el:"#app",
+            data:{
+                // cp1:"aa",
+                // cp2:"bb",
+                cp:"aa",
+            },
+            components:{
+                aa,bb
+            },
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div>{{bl?"男":"女"}}</div>
+        <div>{{cptstr}}</div>
+
+
+        <input type="text" v-model="query"/>
+
+
+        <ul>
+            <li v-for="(item,index) of cptlist" :key="index">{{item.name}}/{{item.sex}}</li>
+        </ul>
+
+    </div>
+
+    <script src="./vue.js"></script>
+    <script>
+
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                text:"I love you money !",
+                bl:true,
+                query:"",
+                list:[
+                    {name:"小明",sex:"男",},
+                    {name:"小慧",sex:"女",},
+                    {name:"小亮",sex:"男",}
+                ],
+            },
+
+            // 计算属性是个函数，当依赖的元数据变化时会重新计算
+            computed:{
+                cptstr(){
+                    return this.text.split("").reverse().join("");
+                },
+                cptlist(){
+                    var result=[];
+                    this.list.forEach((item,index)=>{
+                        if(
+                            item.name.indexOf(this.query)!=-1
+                            ||
+                            item.sex.indexOf(this.query)!=-1
+                        ){
+                            result.push(item)
+                        }
+                    })
+                    return result;
+                }
+            },
+
+        })
+
+    </script>
+</body>
+</html>

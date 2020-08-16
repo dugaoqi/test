@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <!-- 事件冒泡 -->
+        <div @click="show2">
+            <!-- <input type="button" value="按钮" @click="show">  -->
+            <input type="button" value="按钮" @click.stop="show"> 
+        </div>
+
+        <!-- 事件的默认行为 -->
+        <div v-on:contextmenu="show3">点我</div>
+        <!-- <div v-on:contextmenu.prevent="show3">点我</div> -->
+
+    </div>
+
+
+    <div id="app2">
+        <!-- 事件修饰符的连缀 -->
+        <div v-on:contextmenu="show2">
+            <input type="button" value="按钮" v-on:contextmenu.stop.prevent="show">
+        </div>
+        <!-- --------------------------------- -->
+        <!-- 键盘事件、键盘修饰符 -->
+        <!-- <input type="text" @keyup.enter="show3"> -->
+        <ul>
+            <li v-for="val in list">{{val}}</li>
+        </ul>
+
+        <!-- 修饰符exact表示只有按下某个键才会执行,因为有时候按Ctrl键加其他键同时再按回车键也会提交 -->
+        <textarea v-on:keyup.enter.ctrl.exact="show3" name="" id="" cols="30" rows="10"></textarea>
+
+    </div>
+
+    <div id="app3">
+        <button @click="show">按钮</button>
+        
+    </div>
+    <script src="./vue.js"></script>
+    <script>
+
+
+        var vm=new Vue({
+            el:"#app",
+            data:{},
+            methods:{
+                show(e){
+                    console.log("按钮");
+                    // e.cancelBubble=true;
+                    // e.stopPropagation();
+                    console.log(e)
+                },
+                show2(e){
+                    console.log("div");
+                },
+                show3(e){
+                    console.log("右键事件");
+                    // e.preventDefault();
+                    e.returnValue=false;
+                }
+            },
+            directives:{},
+            computed:{},
+        });
+
+
+        const vm2=new Vue({
+            el:"#app2",
+            data:{
+                list:["aa","vv","dd"],
+            },
+            methods:{
+                show(){
+                    console.log("按钮")
+                },
+                show2(){
+                    console.log("div")
+                },
+                show3(e){
+                    console.log(e.keyCode);
+                    if(e.srcElement.value!=""){
+                        this.list.push(e.srcElement.value)
+                    }
+                    e.srcElement.value="";
+                },
+            },
+        }) 
+
+
+        const vm3=new Vue({
+            methods:{
+                show(){
+                    vm3.$emit("bulala","参数1234");
+                    console.log("调用自定义事件");
+                },
+            },
+        }).$mount("#app3")
+        vm3.$on("bulala",function(aa){
+            console.log("自定义事件执行了",aa);
+            // vm3.$off("bulala");
+        })
+
+        // vm3.$emit("bulala","参数");
+        // vm3.$emit("bulala","参数");
+    </script>
+</body>
+</html>
