@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+
+        .box{
+            width:100%;
+            height:600px;
+            margin:100px auto 0;
+            position:relative;
+            border:4px #999 solid;
+            border-left: 10px #999 solid;
+            border-right: 10px #999 solid;
+            overflow:hidden;
+        }
+        .box img{
+            position:absolute;
+            left:0;
+            top:0;
+            max-width:100%;
+            height:auto;
+            display:inline-block;
+        }
+        .box span{
+            position:absolute;
+            width:100%;
+            height:50%;
+            left:0;
+        }
+        .top{
+            top:0;
+        }
+        .bottom{
+            bottom:0;
+        }
+
+
+    </style>
+</head>
+<body>
+    
+
+    <div class="box">
+
+        <img src="./img/home_1.jpg" alt="">
+        <span class="top"></span>
+        <span class="bottom"></span>
+
+    </div>
+
+
+    <script>
+        var otop=document.getElementsByClassName('top')[0];
+        var obtm=document.getElementsByClassName('bottom')[0];
+        var oimg=document.getElementsByTagName('img')[0];
+        var obox=document.getElementsByClassName('box')[0];
+
+        var num=0;
+        var timer=null;
+        otop.onmouseover=function(){
+           clearInterval(timer)
+           timer = setInterval(function(){
+                num-=20;
+                if(num>=-5225){
+                    oimg.style.top=num+'px';
+                }else{
+                    clearInterval(timer)
+                }
+            },150)
+        }
+        obtm.onmouseover=function(){
+           clearInterval(timer)
+           timer = setInterval(function(){
+                num+=20;
+                if(num<=0){
+                    oimg.style.top=num+'px';
+                }else{
+                    clearInterval(timer)
+                }
+            },150)
+        }
+
+        obox.onmouseout=function(){
+            clearInterval(timer)
+        }
+
+    </script>
+
+</body>
+</html>

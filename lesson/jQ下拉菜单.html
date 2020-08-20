@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            list-style: none;
+        }
+        .wrap{
+            width:200px;
+            background-color:#333;
+            padding:20px 10px;
+        }
+        .wrap li{
+            width:100%;
+            color:#fff;
+        }
+        li .list_box{
+            position:relative;
+            left:20px;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+    
+    <ul class="wrap">
+        <li>
+            <h3>菜单一:</h3>
+            <div class="list_box">
+                <p>11111</p>
+                <p>22222</p>
+                <p>33333</p>
+            </div>
+        </li>
+        
+    </ul>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var flag=true;
+        // $(".wrap li").click(function(){
+        //     if(flag){
+        //         $(".list_box").slideDown();
+        //         flag=false;
+        //     }else{
+        //         $(".list_box").slideUp();
+        //         flag=true;
+        //     }
+        // })
+        $(".wrap li").bind("mouseover",function(){
+            $(".list_box").slideDown();
+        })
+        $(".wrap li").bind("mouseout",function(){
+            
+            $(".list_box").slideUp();
+            
+        })
+
+    </script>
+
+</body>
+</html>

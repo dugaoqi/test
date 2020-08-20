@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>二级联动菜单</title>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+      }
+      form {
+        width: 300px;
+        height: 300px;
+        margin: 10px auto;
+      }
+      form select {
+        width: 140px;
+        height: 50px;
+        text-align: center;
+        line-height: 30px;
+        font-size: 20px;
+      }
+    </style>
+    <script>
+      var x = ["请选择...", "美食", "景点", "电影"];
+    //   var y = [
+    //     ["请选择..."],
+    //     ["黄焖鸡", "油焖大虾", "红烧肉", "东坡肉"],
+    //     ["黄山", "泰山", "嵩山", "华山"],
+    //     ["烈日灼心", "逆战", "无间道", "黑金"],
+    //   ];
+      window.onload = init;
+      function init() {
+        var chose1 = document.getElementById("chose1");
+        var chose2 = document.getElementById("chose2");
+        chose1.length = x.length;
+        for (var i = 0; i < x.length; i++) {
+          chose1.options[i].text = x[i];
+        }
+        // var index = 0;
+        // chose2.length = y[index].length;
+        // for (var j = 0; j < y[index].length; j++) {
+        //   chose2.options[j].text = y[index][j];
+        // }
+      }
+    //   function change(obj) {
+    //     var chose2 = document.getElementById("chose2");
+    //     chose2.length = y[obj].length;
+    //     for (var j = 0; j < y[obj].length; j++) {
+    //       chose2.options[j].text = y[obj][j];
+    //     }
+    //   }
+    </script>
+  </head>
+  <body>
+    <form>
+      <select id="chose1" onchange="change(this.selectedIndex)"></select>
+      <!-- <select id="chose2"></select> -->
+    </form>
+  </body>
+</html>

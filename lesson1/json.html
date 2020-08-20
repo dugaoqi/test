@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+
+    <script>
+        // json 是一种特殊的字符串，前后端数据交互的一种语言格式
+
+        // 字符串可以被任意语言识别并转换成任意语言的对象
+        
+        // json中的属性名必须加引号
+
+        var str='{"name":"孙悟空","sex":"男"}';
+
+
+        var str=JSON.parse(str)
+        console.log(str.name)
+
+
+
+
+        // json序列化、反序列化
+
+        // JSON.parse()  //-->对象
+        // JSON.stringify() //-->字符串
+
+
+        // JSON不兼容IE7及以下的浏览器,会报错
+
+        // eval()   可以执行一段字符创形式的代码，并将其执行结果返回
+
+        // 解析字符串
+
+        // 如果eval()执行的字符串中含有{}花括号，会将其当场代码块，解决方法是前后加上（）小括号
+
+        // 执行性能差 ，具有安全隐患
+        var str2="alert('哈哈')";
+        eval(str2);
+        // eval("("+str2+")");
+
+
+
+
+    </script>
+    
+</body>
+</html>

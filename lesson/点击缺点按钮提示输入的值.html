@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    
+
+
+    <input type="text" id="iptval">
+    <input type="button" id="btn1" value="btn1">
+    <input type="button" id="btn2" value="btn2">
+
+
+
+
+    <p>段落标签</p>
+    <div class="box"></div>
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./js/feDm1S.js"></script>
+    <script>
+        // 原生js 方法
+        var iptbtn=document.getElementById("btn1")
+        var iptval=document.getElementById("iptval")
+        iptbtn.onclick=function(){
+            var val=iptval.value;
+            alert(val);
+        }
+
+
+
+        // jQuery方法
+
+        $(document).ready(function(){
+            $("#btn2").click(function(){
+                var val2=$("#iptval").val();
+                alert(val2)
+            })
+        })
+
+        jQuery(function(){
+            console.log($)
+        })
+        // 
+        $("p").appendTo(".box");
+        $(".box").append("<p>段落标签</p>");
+
+
+
+var arr=[1,12,13,2,21];
+$.each(arr,function(index,item){
+    console.log(index,item)
+})
+
+
+
+
+    </script>
+</body>
+</html>

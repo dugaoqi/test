@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box {
+        width: 400px;
+        height: 300px;
+        border: 2px solid;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .header {
+        height: 50px;
+      }
+      .header span {
+        height: 50px;
+        float: left;
+        display: block;
+        width: 25%;
+        border: 2px solid;
+        text-align: center;
+        font: 24px/50px "宋体";
+      }
+      .content {
+        width: 100%;
+        height: 250px;
+      }
+      .content div {
+        width: 100%;
+        height: 100%;
+        background: pink;
+        display: none;
+      }
+      .active {
+        background: green;
+      }
+      .show {
+        display: block !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="header">
+        <span class="active">首页</span>
+        <span>购物车</span>
+        <span>推荐</span>
+        <span>我的</span>
+      </div>
+
+      <div class="content">
+        <div class="show">我是首页呵呵</div>
+        <div>我是购物车呵呵</div>
+        <div>我是推荐呵呵</div>
+        <div>我是我的呵呵</div>
+      </div>
+    </div>
+
+    <script>
+      var spans = document.querySelectorAll(".header span");
+      var divs = document.querySelectorAll(".content div");
+      // 第二个版本
+      for (var i = 0; i < spans.length; i++) {
+        spans[i].setAttribute("data-id", i);
+        spans[i].onclick = function () {
+          for (var j = 0; j < spans.length; j++) {
+            spans[j].classList.remove("active");
+            divs[j].classList.remove("show");
+          }
+          this.classList.add("active");
+
+          var index = this.getAttribute("data-id");
+          console.log(index);
+
+          divs[index].classList.add("show");
+        };
+      }
+
+      //第一版
+      // for (var i = 0; i < spans.length; i++){
+      // click(i)
+      // }
+      //
+      //
+      // function click(i) {
+      // spans[i].onclick = function () {
+      // for (var j = 0; j < spans.length; j++){
+      // spans[j].classList.remove("active")
+      // divs[j].classList.remove("show")
+      // }
+      // this.classList.add("active")
+      // divs[i].classList.add("show")
+      // }
+      // }
+    </script>
+  </body>
+</html>

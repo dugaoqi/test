@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>二级菜单实现</title>
+
+<style type="text/css">
+
+*{margin: 0;padding: 0}
+
+ul,li{list-style: none;}
+
+.main{ width: 400px; height: 50px; float: left; margin-top: 10px; margin-bottom: 10px; }
+
+.main ul li{display: block;float: left; width: 100px; height: 50px;line-height: 50px; text-align: center; font-size: 12px; cursor: pointer; border: 1px solid #f2f2f2;box-sizing: border-box;}
+
+.main ul li.active{ background:orange; color: #fff; }
+
+.item{display: none; width: 400px; height: 50px;font-size: 12px; line-height:50px; overflow: hidden;clear: both; background: #f2f2f2;}
+
+.item ul li{display: block;float: left; width: 100px; height: 50px;line-height: 50px; text-align: center; font-size: 12px; cursor: pointer;}
+
+.item ul li:hover{ background:blue; color: #fff; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="main">
+
+<ul>
+
+<li>首页</li>
+
+<li>关于我们</li>
+
+<li>企业资讯</li>
+
+<li>人才招聘</li>
+
+</ul>
+
+</div>
+
+<div class="item">
+
+<ul>
+
+<li>选项1</li>
+
+<li>选项2</li>
+
+<li>选项3</li>
+
+</ul>
+
+</div>
+
+<div class="item">
+
+<ul>
+
+<li>我们1</li>
+
+<li>我们2</li>
+
+<li>我们3</li>
+
+</ul>
+
+</div>
+
+<div class="item">
+
+<ul>
+
+<li>企业1</li>
+
+<li>企业2</li>
+
+<li>企业3</li>
+
+</ul>
+
+</div>
+
+<div class="item">
+
+<ul>
+
+<li>招聘1</li>
+
+<li>招聘2</li>
+
+<li>招聘3</li>
+
+</ul>
+
+</div>
+
+<script type="text/javascript">
+
+window.onload = function(){
+
+var mainlis = document.querySelector('.main').querySelectorAll('li');
+
+var items = document.querySelectorAll('.item');
+
+var timer = null;
+
+for (var i = 0; i < mainlis.length; i++) {
+
+mainlis[i].index = i;
+
+mainlis[i].onmouseover = function(){
+
+clearTimeout(timer);
+
+//排他思想，把所有的li去掉当前状态 把所有的item隐藏
+
+for (var j = 0; j < mainlis.length; j++) {
+
+mainlis[j].className = '';
+
+items[j].style.display = 'none';
+
+}
+
+this.className = 'active';
+
+items[this.index].style.display = 'block';
+
+}
+
+items[i].onmouseover = function(){
+
+clearTimeout(timer);
+
+}
+
+mainlis[i].onmouseout = items[i].onmouseout = hide;
+
+}
+
+function hide(){
+
+timer = setTimeout(function(){
+
+for (var j = 0; j < mainlis.length; j++) {
+
+items[j].style.display = 'none';
+
+mainlis[j].className = '';
+
+}
+
+},300)
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
