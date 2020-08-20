@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+
+</head>
+<body>
+    <div id="app">
+
+        <div class="layui-inline">
+            <label class="layui-form-label">日期时间选择器:</label>
+            <div class="layui-input-inline">
+              <input v-model="dateval" type="text" class="layui-input" id="test5" placeholder="">
+            </div>
+        </div>
+
+        <div>{{dateval}}</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+    <script>
+       console.log(Vue)
+
+
+        const vm=new Vue({
+            el:"#app",
+            data:{
+                dateval:"",
+            },
+            mounted(){
+                var that=this;
+                layui.use('laydate', function(){
+                    var laydate = layui.laydate;
+                    //日期时间选择器
+                    laydate.render({
+                        elem: '#test5',
+                        type: 'datetime',
+                    　  format: 'yyyy-MM-dd HH:mm:ss',// 设置显示格式
+
+                        done: function(value, date, endDate){
+                            console.log(value); //得到日期生成的值，如：2017-08-18
+                            
+                            that.dateval=value;
+                            console.log(that.dateval,'777');
+                            console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+                            console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+                        }
+                    });
+                })
+            }
+        })
+  
+
+    </script>
+</body>
+</html>

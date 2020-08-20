@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            /* font-size:0.13333333333333333px; */
+            font-size:1.3333333333333333px; /*   vw换成px   */
+        }
+        .box{
+            width:4.8rem;
+            height:3.5rem;
+            /* width:48rem;
+            height:35rem; */
+            background-color:red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+
+
+    
+
+
+
+
+    <script>
+
+// em
+// rem
+// vw
+
+// 100vw=750px      1px=(100/750)vw  ==  0.13333333333333333vw
+// html  font-size=1px==0.13333333333333333vw  *10==1rem
+// 元素的width  height /10 
+
+// 例子   48*35     4.8rem  
+
+
+    </script>
+
+
+
+<script>
+    $(function() {
+        function setRem() {
+            var clientWidth = $(window).width();
+            var nowRem = (clientWidth / 375 * 10);
+            $("html").css("font-size", parseInt(nowRem, 12) + "px");
+        };
+        setRem();
+    
+        var timer;
+        $(window).bind("resize", function() {
+            clearTimeout(timer)
+            timer = setTimeout(function() {
+                setRem();
+            }, 100)
+        })
+    });
+</script>
+
+</body>
+</html>

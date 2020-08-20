@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" href="./1.png" type="image/x-icon"/>
+    <style>
+      
+    </style>
+</head>
+<body>
+    
+    <input type="text" style="width:40px;" id="test" onPropChanged ="handleChangeWidth()" oninput ="handleChangeWidth()"/> 
+    <script type="text/javascript"> 
+    function handleChangeWidth() { 
+        var dom = document.getElementById('test'), 
+            textLength = document.getElementById('test').value.length; 
+        //对字数及宽度做限制 
+        if(textLength>30){ 
+            dom.style.width = '200px'; 
+            return false; 
+        } 
+        dom.style.width = textLength*8 + 'px'; 
+    } 
+
+    </script>
+    
+</body>
+</html>
