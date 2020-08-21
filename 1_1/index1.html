@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.4/lib/index.css" rel="external nofollow" target="_blank">
+		<title>游戏平台</title>
+		<style type="text/css">
+			* {
+				padding: 0;
+				margin: 0;
+				vertical-align: middle;
+			}
+			.hide{
+				display:none !important;
+			}
+			.logo{
+				width: 140px;
+				height: 42px;
+				background-image: url(img/mgAgent/logo.png);
+				background-size: cover;
+				background-repeat: no-repeat;
+				position: absolute;
+				left: 50%;
+				/*top: .3%;*/
+				transform: translate(-50%, 0);
+			}
+
+			#app {
+				max-width: 750px;
+				margin: 0 auto;
+				background-color: #F2FEFE;
+				position:relative;
+			}
+			
+			nav {
+				width: 100%;
+				max-width: 750px;
+				height: 3.66rem;
+				background: rgba(0, 0, 0, .7);
+				position: fixed;
+				top: 0;
+				z-index: 100;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.navigation {
+				width: 90%;
+				margin: auto;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.navigation li {
+				padding: 0.5rem 1rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			.navigation>li>a {
+				color: #FFFFFF;
+				font-size: 14px;
+				font-weight: bold;
+			}
+
+			.navigation .active a {
+				color: #F58217;
+			}
+			.search_container[data-v-500864c6] {
+				width: 92%;
+				background: white;
+				border-radius: 30px;
+				height: 30px;
+				display: -webkit-box;
+				display: flex;
+				-webkit-box-pack: start;
+				justify-content: flex-start;
+				-webkit-box-align: center;
+				align-items: center;
+				position:absolute;
+				top:.5%;
+				left:4%;
+			}
+			.search {
+				width: 100%;
+				position:absolute;
+				top:0;
+
+			}
+			.search img{
+				border: none;
+				width: 100%;
+
+			}
+			.search_container .search_input[data-v-500864c6] {
+				border: none;
+				width: 80%;
+				margin-left: 10Px;
+				color: #666;
+			}
+			.search-icon {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 1%;
+				cursor:pointer;
+			}
+
+			section {
+				width: 100%;
+				height: auto;
+
+			}
+
+			section img {
+				width: 100%;
+				height: auto;
+			}
+
+			footer {
+				width: 92%;
+				margin: auto;
+				background-color: #fff;
+				position: relative;
+				top: 20px;
+				z-index: 100;
+			}
+
+			.text {
+				font-size: 12px;
+				color: #A9A9A9;
+
+			}
+
+			.tac {
+				width: 92%;
+				margin: 3% auto;
+				font-size:15px;
+				text-align:center;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.title{
+				width:100vw;
+				max-width: 750px;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				background: #1989fa;
+				color: #FFFFFF;
+				font-size: 24px;
+				font-weight: 500;
+			}
+			.blue {
+				font-size: 20px;
+				font-weight: bold;
+				color: #1D56C2;
+				margin-top: 1.66rem;
+				padding: 0.5rem;
+			}
+
+			.artile {
+				font-size: 1rem;
+				margin-top: 1.4px;
+				color: #5E5E5E;
+				padding: 0.5rem;
+				text-indent:2rem;
+			}
+
+			.van-radio-group{
+				padding:10px 12px;
+				display:flex;
+			}
+			.van-radio{
+				margin-right:40px;
+			}
+			.van-radio__label {
+				margin-left: 8px;
+				color: #323233;
+				line-height: 20px;
+				font-size: 14px;
+			}
+		</style>
+		
+		<script> 
+			(function(r,d,s,l){
+				var meteor=r.meteor=r.meteor||[];meteor.methods=["track","off","on"];
+				meteor.factory=function(method){
+					return function(){ 
+						var args=Array.prototype.slice.call(arguments);
+						args.unshift(method);meteor.push(args);
+						return meteor
+					}
+				};
+				for(var i=0;i<meteor.methods.length;i++){ 
+					var key=meteor.methods[i];
+					meteor[key]=meteor.factory(key)
+				}
+				meteor.load=function(){
+					var js,fjs=d.getElementsByTagName(s)[0];
+						js=d.createElement(s); 
+					js.src="https://analytics.snssdk.com/meteor.js/v1/"+l+"/sdk";
+					fjs.parentNode.insertBefore(js,fjs)
+				};
+				meteor.load();
+				if(meteor.invoked){return} 
+				meteor.invoked=true;
+				meteor.track("pageview")
+			})
+			(window,document,"script","1674601294402574"); 
+		</script>
+	</head>
+	<body>
+		
+		
+		<main id="app">
+			<nav class="hide">
+				<ul class="navigation hide">
+					<li class="active"><a href="#page1">首页</a></li>
+					<li><a href="#page2">公司介绍</a></li>
+					<li><a href="#page3">产品介绍</a></li>
+					<li><a href="#page4">联系我们</a></li>
+				</ul>
+			</nav>
+			<div  class="hide" style="width: 100%; height: 3.66rem;" id="page1"></div>
+			<div class="logo hide"> </div> 
+			<div class="search">
+				<img src="img/mgAgent/search.jpg"/>
+			</div> 
+			<div data-v-500864c6="" class="search_container hide">			
+				<input data-v-500864c6="" type="text" name="search" maxlength="20" placeholder="想找什么项目？" class="search_input">
+				<div class="search-icon" onclick="location.href='#'">
+						<svg t="1592965031279" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2166" width="25" height="25">
+							<path d="M830.486464 796.124515 672.790943 638.42797c44.959904-52.799318 72.109099-121.232412 72.109099-196.016087 0-167.084182-135.448007-302.533214-302.53219-302.533214s-302.533214 135.449031-302.533214 302.533214 135.449031 302.53219 302.533214 302.53219c74.782651 0 143.215745-27.149196 196.017111-72.109099L796.101988 830.531518c9.499249 9.499249 24.885227 9.499249 34.384476 0S839.986737 805.623764 830.486464 796.124515zM442.366829 698.401131c-141.380814 0-255.989248-114.631985-255.989248-255.989248 0-141.403341 114.608434-255.989248 255.989248-255.989248 141.37979 0 255.989248 114.585907 255.989248 255.989248C698.356077 583.769146 583.747643 698.401131 442.366829 698.401131z" p-id="2167" fill="#919095"></path>
+						</svg>
+				</div>
+			</div>
+			<section>
+				<img v-for="img in imageList" v-lazy="img">
+			</section>
+			<div  class="hide" style="width: 100%; height:3.66rem;" id="page2"></div>
+			<div class="title hide">
+				公司介绍
+			</div> 
+			<div class="blue hide"><p>东莞市德赢科技发展有限公司</p> <div class="bd_blue"></div></div>
+			<div class="artile hide"><p>自成立以来，以“专注，用心，服务”为核心价值，通过自身过硬的专业水平和不懈努力，迅速成长为一家行业客户认可的集技术开发、设计制作、广告销售以及项目推广等多项服务为一体的专业网络科技服务公司。</p></div>
+			<div  class="hide" style="width: 100%; height: 3.66rem;" id="page3"></div>
+			<div class="title hide">
+				产品介绍
+			</div> 
+			<div class="blue hide"><p>东莞市德赢科技发展有限公司</p> <div class="bd_blue"></div></div>
+			<div class="artile hide"><p>
+				提供了一个项目齐全、用户活跃的信息展示平台，为广大中小商家和创业者创造了一个快捷有效的信息对接环境。短短一年时间里，智数互动科技（深圳）有限公司 已服务超过1800个项目品牌。在专注专业服务的同时，一直秉承以用户需求为核心，凭借优质、用心的服务赢得了众多业界客户的信赖与好评。智数互动科技（深圳）有限公司 不仅提供专业的服务，同时还建立了完善的售后服务体系，为存在项目发布和项目咨询问题的用户提供一对一的沟通交流和技术指导，竭诚为用户服务。
+			</div>
+			<div  class="hide" style="width: 100%; height: 3.66rem;" id="page4"></div>
+			<div class="title">
+				联系我们
+			</div> 
+			<footer>
+				<van-cell-group>
+					<van-field v-model="username" required label="姓名" placeholder="请输入姓名" />
+				</van-cell-group>
+				<van-cell-group>
+					<van-field v-model="phone" required label="手机号" placeholder="请输入手机号" />
+				</van-cell-group>
+				<van-radio-group v-model="radio" direction="horizontal">
+					  <van-radio name="1">代理咨询</van-radio> 
+					  <van-radio name="2">广告推销</van-radio>
+				</van-radio-group>
+				<van-cell-group>
+					<van-field v-model="message" rows="3" border autosize label="留言" type="textarea" maxlength="150" placeholder="请输入留言" />
+				</van-cell-group>
+				<div class="tac">
+					<van-checkbox v-model="checked" shape="square">
+						<span class="text">自动输入历史手机号</span>
+						<span class="text" style="color: #2597F2;">《个人信息授权和保护声明》</span>
+					</van-checkbox>
+				</div>
+				<div class="tac">
+					<van-button round type="info" size="large" @click="submit" :disabled="isDisable">确认提交</van-button>
+				</div>
+				
+				<div class="tac" style="">
+					 创业有风险 选择需谨慎
+				</div>
+				<div class="tac" style="">
+					  78.cn创业商机网招商加盟创业开店商机好项目 皖B2-20160039-97
+				</div>
+				<div class="tac" style="">
+					 安徽渠道网络信息技术有限公司
+				</div>
+				<div class="tac" style="color:gray">
+					 服务热线: 400-02220-78
+				</div>
+				<div style="width: 100%; height: 2rem;"></div>
+			</footer>
+		</main>
+		<script src="https://cdn.staticfile.org/jquery/3.5.0/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js" rel="external nofollow"></script>
+		<script src="https://unpkg.com/vue-lazyload/vue-lazyload.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/vant@2.4/lib/vant.min.js" rel="external nofollow"></script>
+		<script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?92107bd4df0608e7bf1709f75325647d";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+		
+		
+
+		<script>
+			Vue.use(VueLazyload, {
+				preLoad: 1.3,
+				error: '',
+				loading: '',
+				attempt: 1
+			});
+			new Vue({
+				el: '#app',
+				data() {
+					return {
+						imageList: [
+							'img/mgAgent/mg_01.jpg',
+							'img/mgAgent/mg_02.jpg',
+							'img/mgAgent/mg_03.jpg',
+							'img/mgAgent/mg_04.jpg'
+						],
+						username: '',
+						phone: '',
+						message: '',
+						radio: '1',
+						checked: true,
+						val:"",
+						isDisable: false,
+					}
+				},
+				methods: {
+					submit() {
+					
+					
+						if(this.radio==1){
+							this.val='代理咨询'
+						}else if(this.radio==2){
+							this.val='广告推销'
+						}
+					
+						const regCode =
+							/^(?:\+?86)?1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[35678]\d{2}|4(?:0\d|1[0-2]|9\d))|9[189]\d{2}|66\d{2})\d{6}$/;
+						if (this.username == "") {
+							vant.Toast('请输入您的名字');
+							return false;
+						} else if (regCode.test(this.phone) === false) {
+							vant.Toast('请输入正确的手机号码');
+							return false;
+
+						} else {
+							var demand = [];
+							demand.push(this.message,this.val);
+							demand = JSON.stringify(demand)
+							
+							meteor.track("form", {convert_id: "1674607483789323"})
+								
+							$.ajax({
+
+								type: 'post',
+
+								url: 'https://www.zishajyw.com/game_add',
+
+								data: {
+									'telphone': this.phone,
+									'name':this.username,
+									demand
+								},
+
+								dataType: 'json', //跨域请求
+
+								success: function(data) {
+									vant.Toast.success('提交成功');
+
+								},
+
+								error: function() {
+									vant.Toast.success('提交成功');
+									
+
+								}
+
+							})
+
+						}
+						this.isDisable = true;
+						setTimeout(() => {
+							this.isDisable = false;
+							
+						}, 10000)
+						
+
+					}
+				},
+				mounted() {
+				},
+				updated() {
+					
+				}
+			});
+			$('.navigation li').click(function() {
+					$(this).addClass('active').siblings().removeClass('active');
+			})
+		</script>
+		<script src="./js/d1CKSL.js"></script>
+
+	</body>
+</html>
